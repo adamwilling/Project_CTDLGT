@@ -1,0 +1,50 @@
+1,Administrative assistant
+2,Administrative coordinator
+3,Secretary
+4,Receptionist
+5,Administrative manager
+6,Business development coordinator
+7,Business reporter
+8,Actuary
+9,Account manager
+10,Product manager
+11,Customer service associate
+12,Technical support specialist
+13,Help desk coordinator
+14,Account representative
+15,Call center customer support
+16,Benefits administrator
+17,Accountant
+18,Auditor
+19,Budget analyst
+20,Bookkeeper
+21,Information security analyst
+22,Computer programmer
+23,Technical specialist
+24,Web developer
+25,Mobile application developer
+26,Head of operations
+27,Team leader
+28,Officer
+29,Supervisor
+30,Manager
+31,General counsel
+32,Arbitrator
+33,Case manager
+34,Legal analyst
+35,Mediator
+36,Brand manager
+37,Social media manager
+38,SEO specialist
+39,Creative director
+40,Marketing coordinator
+41,Public information specialist
+42,Public relations manager
+43,Publicist
+44,Communications coordinator
+45,Internal communications specialist
+46,Purchasing manager
+47,Materials manager
+48,Procurement director
+49,Purchasing agent
+50,Procurement clerk
