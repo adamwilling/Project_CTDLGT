@@ -1,4 +1,5 @@
 ﻿#include "Employee.h"
+using namespace std;
 
 
 // Cài đặt phương thức get và set thuộc tính id
@@ -82,7 +83,7 @@ void Employee::setSalary(unsigned int salary) {
 }
 
 // Cài đặt phương thức nhập vào thông tin cho nhân viên
-void Employee::inputInfo(vector<Employee> listEmployee) {
+void Employee::inputInfo(vector<Employee> listEmployee, ListDepartment listDepartment, ListPosition listPosition) {
 	bool checkId = true;
 	cout << "+ Enter id: ";
 	do {
@@ -118,11 +119,23 @@ void Employee::inputInfo(vector<Employee> listEmployee) {
 		checkPhoneNumber = isValidPhoneNumber(phoneNumber);
 	} while (!checkPhoneNumber);
 
-	cout << "+ Enter department: ";
-	getline(cin, departmentId);
+	cout << "+ Enter department id: ";
+	bool checkDepartment = true;
+	do {
+		getline(cin, departmentId);
+		checkDepartment = isValidDepartmentId(departmentId, listDepartment.getListDepartment());
+	} while (!checkDepartment);
 
-	cout << "+ Enter position: ";
-	getline(cin, positionId);
+	Department department = listDepartment.searchDepartmentById(departmentId);
+	cout << "* List position managed by this department: ";
+	department.showListPositionChild(listPosition);
+
+	cout << "+ Enter position id: ";
+	bool checkPositionId = true;
+	do {
+		getline(cin, positionId);
+		checkPositionId = isValidPositionId(positionId, department);
+	} while (!checkPositionId);
 
 	cout << "+ Enter salary: ";
 	cin >> salary;
@@ -215,10 +228,10 @@ void Employee::updateInfo(vector<Employee> listEmployee) {
 		checkPhoneNumber = isValidPhoneNumber(phoneNumber);
 	} while (!checkPhoneNumber);
 
-	cout << "+ Enter new department: ";
+	cout << "+ Enter new department id: ";
 	getline(cin, departmentId);
 
-	cout << "+ Enter new position: ";
+	cout << "+ Enter new position id: ";
 	getline(cin, positionId);
 
 	cout << "+ Enter new salary: ";

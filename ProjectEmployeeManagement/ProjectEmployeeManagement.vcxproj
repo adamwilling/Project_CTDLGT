@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <ShowIncludes>true</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,6 +148,7 @@
     <ClCompile Include="ListPosition.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Position.cpp" />
+    <ClCompile Include="quickSort.cpp" />
     <ClCompile Include="support.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +160,7 @@
     <ClInclude Include="ListPosition.h" />
     <ClInclude Include="library.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="quickSort.h" />
     <ClInclude Include="support.h" />
   </ItemGroup>
   <ItemGroup>

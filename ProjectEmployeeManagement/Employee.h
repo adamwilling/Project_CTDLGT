@@ -1,11 +1,16 @@
-﻿#pragma once
-#ifndef _EMPLOYEE_H_
+﻿#ifndef _EMPLOYEE_H_
 #define _EMPLOYEE_H_
+
+#ifdef _MSC_VER
+#pragma once
+#endif  // _MSC_VER
+
 #include "library.h"
-#include "support.h"
 #include "Date.h"
 #include "ListDepartment.h"
 #include "ListPosition.h"
+
+class ListDepartment;
 
 class Employee
 {
@@ -62,7 +67,7 @@ public:
 	void setSalary(unsigned int);
 
 	// Khai báo phương thức nhập vào thông tin nhân viên
-	void inputInfo(vector<Employee>);
+	void inputInfo(vector<Employee>, ListDepartment, ListPosition);
 	void importInfo(ifstream&);
 
 	// Khai báo phương thức xuát thông tin nhân viên ra tệp
@@ -75,6 +80,6 @@ public:
 	void showInfo(int, ListDepartment, ListPosition);
 
 	// Hàm kiểm tra id đã tồn tại hay chưa
-	bool isValidId(string id, vector<Employee> listEmployee);
+	bool isValidId(string id, vector<Employee>);
 };
 #endif

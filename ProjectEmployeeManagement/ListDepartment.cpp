@@ -93,4 +93,5 @@ Department ListDepartment::searchDepartmentById(string departmentId) {
 			return department;
 		}
 	}
+	return Department();
 }

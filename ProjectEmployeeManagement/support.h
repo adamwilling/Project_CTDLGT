@@ -1,38 +1,38 @@
-﻿#pragma once
-#ifndef _SUPPORT_H_
+﻿#ifndef _SUPPORT_H_
 #define _SUPPORT_H_
+
+#ifdef _MSC_VER
+#pragma once
+#endif  // _MSC_VER
+
 #include "library.h"
 #include "Employee.h"
+#include "ListDepartment.h"
 
-using namespace std;
+class Department;
 
-// Hàm chuẩn hóa chuỗi
-string standardizeString(string str);
-// Hàm chuyển các ký tự trong chuỗi thành ký tự thường
-void toLowerCase(string& str);
+string standardizeString(string);
 
-// Hàm xác định giới tính
-void determineGender(string& gender);
+void toLowerCase(string&);
 
-// Hàm kiểm tra có phải là chữ cái hay không
-bool isChar(char c);
+void determineGender(string&);
 
-// Hàm kiểm tra có phải là ký tự số hay không
-bool isDigit(char c);
+bool isChar(char);
 
-// Hàm kiểm tra tính hợp lệ của email
-bool isValidEmail(string);
+bool isDigit(char);
 
-// Hàm kiểm tra tính hợp lệ của số điện thoại
-bool isValidPhoneNumber(string);
+bool isValidPositionId(string, Department);
 
-// Hàm kiểm tra lựa chọn có hợp lệ hay không
 bool isValidChoice(string, string*, int);
 
-// Hàm tách các phần từ trong chuỗi thành vector
+bool isValidEmail(string);
+
+bool isValidPhoneNumber(string);
+
+bool isValidDepartmentId(string, vector<Department>);
+
 vector<string> splitStringToVector(string, string);
 
-// Hàm chuyển các phần từ trong vector thành chuỗi
 string joinVectorToString(vector<string>, string);
 
 #endif

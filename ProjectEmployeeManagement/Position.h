@@ -1,6 +1,10 @@
-﻿#pragma once
-#ifndef _POSITION_H_
+﻿#ifndef _POSITION_H_
 #define _POSITION_H_
+
+#ifdef _MSC_VER
+#pragma once
+#endif  // _MSC_VER
+
 #include "library.h"
 
 class Position {
@@ -8,6 +12,11 @@ private:
 	string positionId;
 	string positionName;
 public:
+	Position() {
+		positionId = "";
+		positionName = "";
+	}
+
 	// Khai báo phương thức get và set thuộc tính positionId
 	string getPositionId();
 	void setPositionId(string);

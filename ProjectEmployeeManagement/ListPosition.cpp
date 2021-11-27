@@ -16,21 +16,17 @@ void ListPosition::insertPosition(Position newPosition) {
 }
 
 // Cài đặt phương thức nhập danh sách phòng ban từ tệp
-void ListPosition::importListPosition() {
-inputFile:
-	string fileName;
-	cout << "- Enter file name: ";
-	getline(cin, fileName);
+bool ListPosition::importListPosition(string fileName) {
 	ifstream input(fileName);
 	if (input.fail()) {
-		goto inputFile;
+		return false;
 	}
 	while (!input.eof()) {
 		Position newPosition;
 		newPosition.importInfo(input);
 		listPosition.push_back(newPosition);
 	}
-	cout << "* Import data from file " << fileName << " into list Position successfully!" << endl;
+	return true;
 }
 
 // Cài đặt phương thức xuất danh sách phòng ban từ tệp
@@ -97,4 +93,5 @@ Position ListPosition::searchPositionById(string positionId) {
 			return position;
 		}
 	}
+	return Position();
 }

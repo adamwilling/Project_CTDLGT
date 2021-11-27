@@ -22,11 +22,17 @@ ListDepartment listDepartment;
 ListPosition listPosition;
 
 int main() {
-	system("CLS");
+
+	// Nhập sẵn danh sách phòng ban, danh sách chức vụ và danh sách nhân viên
+	listDepartment.importListDepartment("Department.txt");
+	listPosition.importListPosition("Position.txt");
+	listEmployee.importListEmployee("Employee1.txt");
+
 	int nChoice = 4;
 	string listChoice[]{ "me","md","mp","ex"};
 	string choice;
 	do {
+		system("CLS");
 		cout << endl << setfill('=') << setw(22) << "=" << "Company" << setw(22) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press me to manage employees--" << "|" << endl;
 		cout << setw(50) << left << "--Press md to manage departments--" << "|" << endl;
@@ -85,10 +91,20 @@ void employeeManagement() {
 
 		// Do string không dùng được switch case nên phải dùng if/else if/else
 		if (choice == "is") {
-			listEmployee.insertEmployee();
+			listEmployee.insertEmployee(listDepartment, listPosition);
 		}
 		else if (choice == "ip") {
-			listEmployee.importListEmployee();
+			string fileName;
+			cout << "- Enter file name: ";
+			bool isValidFile = true;
+			do {
+				getline(cin, fileName);
+				isValidFile = listEmployee.importListEmployee(fileName);
+				if (!isValidFile) {
+					cout << "* Not found file \"" << fileName << "\". Re-enter: ";
+				}
+			} while (!isValidFile);
+			cout << "* Import data from file " << fileName << " into list department successfully!" << endl;
 		}
 		else if (choice == "sl") {
 			listEmployee.showListEmployee(listDepartment, listPosition);
@@ -239,7 +255,7 @@ void sortManagement() {
 		else if (choice == "ex") {
 			break;
 		}
-		result.showListEmployee(listDepartment, listPosition);
+		listEmployee.showListEmployee(listDepartment, listPosition);
 		string isExport;
 		cout << "- Export result sort? (Y/N): ";
 		do {
@@ -251,7 +267,7 @@ void sortManagement() {
 		if (isExport == "N") {
 			break;
 		}
-		result.exportListEmployee();
+		listEmployee.exportListEmployee();
 	} while (1);
 }
 #pragma endregion
@@ -344,7 +360,17 @@ void positionManagement() {
 			listPosition.insertPosition();
 		}
 		else if (choice == "ip") {
-			listPosition.importListPosition();
+			string fileName;
+			cout << "- Enter file name: ";
+			bool isValidFile = true;
+			do {
+				getline(cin, fileName);
+				isValidFile = listPosition.importListPosition(fileName);
+				if (!isValidFile) {
+					cout << "* Not found file \"" << fileName << "\". Re-enter: ";
+				}
+			} while (!isValidFile);
+			cout << "* Import data from file " << fileName << " into list position successfully!" << endl;
 		}
 		else if (choice == "sl") {
 			listPosition.showListPosition();

@@ -1,11 +1,16 @@
-﻿#pragma once
-#ifndef _LISTDEPARTMENT_H_
+﻿#ifndef _LISTDEPARTMENT_H_
 #define _LISTDEPARTMENT_H_
+
+#ifdef _MSC_VER
+#pragma once
+#endif  // _MSC_VER
+
 #include "library.h"
 #include "Department.h"
 #include "ListPosition.h"
 
-using namespace std;
+class Department;
+
 class ListDepartment
 {
 private:

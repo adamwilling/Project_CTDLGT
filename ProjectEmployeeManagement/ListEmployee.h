@@ -1,10 +1,16 @@
-﻿#pragma once
-#ifndef _LISTEMPLOYEE_H_
+﻿#ifndef _LISTEMPLOYEE_H_
 #define _LISTEMPLOYEE_H_
+
+#ifdef _MSC_VER
+#pragma once
+#endif  // _MSC_VER
+
 #include "library.h"
 #include "Employee.h"
 #include "ListDepartment.h"
 #include "ListPosition.h"
+
+class Employee;
 
 class ListEmployee
 {
@@ -15,9 +21,9 @@ public:
 	vector<Employee> getListEmployee();
 
 	// Khai báo phương thức thêm nhân viên mới vào danh sách nhân viên
-	void insertEmployee(); // Nhập dữ liệu từ bàn phím
+	void insertEmployee(ListDepartment, ListPosition); // Nhập dữ liệu từ bàn phím
 	void insertEmployee(Employee); // Truyền vào nhân viên để thêm
-	void importListEmployee(); // Nhập dữ liệu từ tập tin
+	bool importListEmployee(string); // Nhập dữ liệu từ tập tin
 
 	// Khai báo phương thức xuất danh sách nhân viên ra tệp
 	void exportListEmployee();

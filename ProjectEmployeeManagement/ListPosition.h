@@ -1,8 +1,14 @@
-﻿#pragma once
-#ifndef _LISTPOSITION_H_
+﻿#ifndef _LISTPOSITION_H_
 #define _LISTPOSITION_H_
+
+#ifdef _MSC_VER
+#pragma once
+#endif  // _MSC_VER
+
 #include "library.h"
 #include "Position.h"
+
+class Position;
 
 class ListPosition
 {
@@ -15,7 +21,7 @@ public:
 	// Khai báo phương thức thêm chức vụ mới vào danh sách chức vụ
 	void insertPosition();				// Nhập dữ liệu từ bàn phím
 	void insertPosition(Position);		// Truyền vào chức vụ để thêm
-	void importListPosition();			// Nhập dữ liệu từ tập tin
+	bool importListPosition(string);			// Nhập dữ liệu từ tập tin
 
 	// Khai báo phương thức xuất danh sách chức vụ ra tệp
 	void exportListPosition();

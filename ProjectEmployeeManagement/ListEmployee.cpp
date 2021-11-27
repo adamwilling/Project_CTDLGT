@@ -1,4 +1,5 @@
 ﻿#include "ListEmployee.h"
+#include "quickSort.h"
 
 // Cài đặt phương thức get danh sách nhân viên
 vector<Employee> ListEmployee::getListEmployee() {
@@ -6,9 +7,9 @@ vector<Employee> ListEmployee::getListEmployee() {
 }
 
 // Cài đặt phương thức thêm nhân viên từ bàn phím
-void ListEmployee::insertEmployee() {
+void ListEmployee::insertEmployee(ListDepartment listDepartment, ListPosition listPosition) {
 	Employee newEmployee;
-	newEmployee.inputInfo(listEmployee);
+	newEmployee.inputInfo(listEmployee, listDepartment, listPosition);
 	listEmployee.push_back(newEmployee);
 }
 void ListEmployee::insertEmployee(Employee newEmployee) {
@@ -16,21 +17,17 @@ void ListEmployee::insertEmployee(Employee newEmployee) {
 }
 
 // Cài đặt phương thức nhập danh sách nhân viên từ tệp
-void ListEmployee::importListEmployee() {
-inputFile:
-	string fileName;
-	cout << "- Enter file name: ";
-	getline(cin, fileName);
+bool ListEmployee::importListEmployee(string fileName) {
 	ifstream input(fileName);
 	if (input.fail()) {
-		goto inputFile;
+		return false;
 	}
 	while (!input.eof()) {
 		Employee newEmployee;
 		newEmployee.importInfo(input);
 		listEmployee.push_back(newEmployee);
 	}
-	cout << "* Import data from file " << fileName << " into list employee successfully!" << endl;
+	return true;
 }
 
 // Cài đặt phương thức xuất danh sách nhân viên từ tệp
@@ -49,6 +46,7 @@ void ListEmployee::exportListEmployee() {
 void ListEmployee::showListEmployee(ListDepartment listDepartment, ListPosition listPosition) {
 	if (listEmployee.size() > 0) {
 		cout << setw(5) << "STT" << setw(12) << "Id" << setw(30) << "Full name" << setw(10) << "Gender" << setw(15) << "Date of birth" << setw(15) << "Join at" << setw(40) << "Email" << setw(15) << "Phone number" << setw(40) << "Department" << setw(40) << "Position" << setw(15) << "Salary" << endl;
+		cout << setfill('-') << setw(237) << "-" << setfill(' ');
 		for (int i = 0; i < listEmployee.size(); i++) {
 			listEmployee[i].showInfo(i + 1, listDepartment, listPosition);
 		}
@@ -63,7 +61,7 @@ void ListEmployee::editEmployee() {
 	string id;
 	cout << "- Enten employee's id to edit info: ";
 	getline(cin, id);
-	for (int i = 0; i < listEmployee.size(); i++) {
+	for (int i = 0; i < listEmployee.size(); ++i) {
 		if (listEmployee[i].getId() == id) {
 			listEmployee[i].updateInfo(listEmployee);
 			return;
@@ -77,7 +75,7 @@ void ListEmployee::deleteEmployee() {
 	string id;
 	cout << "- Enten employee's id to delete: ";
 	getline(cin, id);
-	for (int i = 0; i < listEmployee.size(); i++) {
+	for (int i = 0; i < listEmployee.size(); ++i) {
 		if (listEmployee[i].getId() == id) {
 			listEmployee.erase(listEmployee.begin() + i);
 			cout << "* Delete employee with id " << id << " successfully!" << endl;
@@ -135,47 +133,16 @@ void ListEmployee::sortListEmployee(int choice, int type) {
 	switch (choice)
 	{
 	case 1: {
-		if (type == 0) {
-			int i, j;
-			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; i++) {
-				haveSwap = false;
-				for (j = 0; j < listEmployee.size() - i - 1; j++) {
-					if (listEmployee[j].getId() > listEmployee[j + 1].getId()) {
-						swap(listEmployee[j], listEmployee[j + 1]);
-						haveSwap = true;
-					}
-				}
-				if (haveSwap == false) {
-					break;
-				}
-			}
-		}
-		else {
-			int i, j;
-			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; i++) {
-				haveSwap = false;
-				for (j = 0; j < listEmployee.size() - i - 1; j++) {
-					if (listEmployee[j].getId() < listEmployee[j + 1].getId()) {
-						swap(listEmployee[j], listEmployee[j + 1]);
-						haveSwap = true;
-					}
-				}
-				if (haveSwap == false) {
-					break;
-				}
-			}
-		}
+		quickSortById(listEmployee, 0, listEmployee.size());
 		break;
 	}
 	case 2: {
 		if (type == 0) {
 			int i, j;
 			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; i++) {
+			for (i = 0; i < listEmployee.size() - 1; ++i) {
 				haveSwap = false;
-				for (j = 0; j < listEmployee.size() - i - 1; j++) {
+				for (j = 0; j < listEmployee.size() - i - 1; ++j) {
 					if (listEmployee[j].getFullName() > listEmployee[j + 1].getFullName()) {
 						swap(listEmployee[j], listEmployee[j + 1]);
 						haveSwap = true;
@@ -189,7 +156,7 @@ void ListEmployee::sortListEmployee(int choice, int type) {
 		else {
 			int i, j;
 			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; i++) {
+			for (i = 0; i < listEmployee.size() - 1; ++i) {
 				haveSwap = false;
 				for (j = 0; j < listEmployee.size() - i - 1; j++) {
 					if (listEmployee[j].getFullName() < listEmployee[j + 1].getFullName()) {
@@ -216,9 +183,9 @@ void ListEmployee::sortListEmployee(int choice, int type) {
 		if (type == 0) {
 			int i, j;
 			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; i++) {
+			for (i = 0; i < listEmployee.size() - 1; ++i) {
 				haveSwap = false;
-				for (j = 0; j < listEmployee.size() - i - 1; j++) {
+				for (j = 0; j < listEmployee.size() - i - 1; ++j) {
 					if (listEmployee[j].getSalary() > listEmployee[j + 1].getSalary()) {
 						swap(listEmployee[j], listEmployee[j + 1]);
 						haveSwap = true;
@@ -232,7 +199,7 @@ void ListEmployee::sortListEmployee(int choice, int type) {
 		else {
 			int i, j;
 			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; i++) {
+			for (i = 0; i < listEmployee.size() - 1; ++i) {
 				haveSwap = false;
 				for (j = 0; j < listEmployee.size() - i - 1; j++) {
 					if (listEmployee[j].getSalary() < listEmployee[j + 1].getSalary()) {
