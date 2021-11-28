@@ -45,10 +45,12 @@ void ListEmployee::exportListEmployee() {
 // Cài đặt phương thức hiển thị danh sách nhân viên
 void ListEmployee::showListEmployee(ListDepartment listDepartment, ListPosition listPosition) {
 	if (listEmployee.size() > 0) {
-		cout << setw(5) << "STT" << setw(12) << "Id" << setw(30) << "Full name" << setw(10) << "Gender" << setw(15) << "Date of birth" << setw(15) << "Join at" << setw(40) << "Email" << setw(15) << "Phone number" << setw(40) << "Department" << setw(40) << "Position" << setw(15) << "Salary" << endl;
+		cout << setfill('-') << setw(237) << "-" << setfill(' ');
+		cout << setw(5) << "STT" << setw(12) << "Id" << setw(30) << "Full name" << setw(10) << "Gender" << setw(15) << "Date of birth" << setw(15) << "Join at" << setw(40) << "Email" << setw(15) << "Phone number" << setw(40) << "Department" << setw(40) << "Position" << setw(15) << "Salary (VND)" << endl;
 		cout << setfill('-') << setw(237) << "-" << setfill(' ');
 		for (int i = 0; i < listEmployee.size(); i++) {
 			listEmployee[i].showInfo(i + 1, listDepartment, listPosition);
+			cout << setfill('-') << setw(237) << "-" << setfill(' ');
 		}
 	}
 	else {
@@ -128,90 +130,28 @@ ListEmployee ListEmployee::filterEmployee(int choice, string value) {
 	return result;
 }
 
-// Khai báo phương thức sắp xếp danh sách nhân viên
-void ListEmployee::sortListEmployee(int choice, int type) {
+// Cài đặt phương thức sắp xếp danh sách nhân viên
+void ListEmployee::sortListEmployee(int choice) {
 	switch (choice)
 	{
 	case 1: {
-		quickSortById(listEmployee, 0, listEmployee.size());
+		quickSortById(listEmployee, 0, listEmployee.size() - 1);
 		break;
 	}
 	case 2: {
-		if (type == 0) {
-			int i, j;
-			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; ++i) {
-				haveSwap = false;
-				for (j = 0; j < listEmployee.size() - i - 1; ++j) {
-					if (listEmployee[j].getFullName() > listEmployee[j + 1].getFullName()) {
-						swap(listEmployee[j], listEmployee[j + 1]);
-						haveSwap = true;
-					}
-				}
-				if (haveSwap == false) {
-					break;
-				}
-			}
-		}
-		else {
-			int i, j;
-			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; ++i) {
-				haveSwap = false;
-				for (j = 0; j < listEmployee.size() - i - 1; j++) {
-					if (listEmployee[j].getFullName() < listEmployee[j + 1].getFullName()) {
-						swap(listEmployee[j], listEmployee[j + 1]);
-						haveSwap = true;
-					}
-				}
-				if (haveSwap == false) {
-					break;
-				}
-			}
-		}
+		quickSortByLastName(listEmployee, 0, listEmployee.size() - 1);
 		break;
 	}
 	case 3: {
-
+		quickSortByDateOfBirth(listEmployee, 0, listEmployee.size() - 1);
 		break;
 	}
 	case 4: {
-
+		quickSortByDateOfJoinAtCompany(listEmployee, 0, listEmployee.size() - 1);
 		break;
 	}
 	case 5: {
-		if (type == 0) {
-			int i, j;
-			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; ++i) {
-				haveSwap = false;
-				for (j = 0; j < listEmployee.size() - i - 1; ++j) {
-					if (listEmployee[j].getSalary() > listEmployee[j + 1].getSalary()) {
-						swap(listEmployee[j], listEmployee[j + 1]);
-						haveSwap = true;
-					}
-				}
-				if (haveSwap == false) {
-					break;
-				}
-			}
-		}
-		else {
-			int i, j;
-			bool haveSwap = false;
-			for (i = 0; i < listEmployee.size() - 1; ++i) {
-				haveSwap = false;
-				for (j = 0; j < listEmployee.size() - i - 1; j++) {
-					if (listEmployee[j].getSalary() < listEmployee[j + 1].getSalary()) {
-						swap(listEmployee[j], listEmployee[j + 1]);
-						haveSwap = true;
-					}
-				}
-				if (haveSwap == false) {
-					break;
-				}
-			}
-		}
+		quickSortBySalary(listEmployee, 0, listEmployee.size() - 1);
 		break;
 	}
 	default:

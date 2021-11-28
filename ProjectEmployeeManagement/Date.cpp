@@ -1,9 +1,21 @@
 ﻿#include "Date.h"
 #define YEAR_NOW 2021
 
+
+// Cài đặt các phương thức get các thuộc tính private
+int Date::getDay() {
+	return day;
+}
+int Date::getMonth() {
+	return month;
+}
+int Date::getYear() {
+	return year;
+}
+
 // Hàm kiểm tra ngày/tháng/năm sinh có hợp lệ hay không
 bool Date::isValidDateOfBirth() {
-	short nDayInMonth = 0;
+	int nDayInMonth = 0;
 	if (YEAR_NOW - year < 16 || YEAR_NOW - year > 65) {
 		cout << "*** Not of working age!" << endl;
 		return false;
@@ -38,7 +50,7 @@ bool Date::isValidDateOfBirth() {
 
 // Hàm kiểm tra ngày/tháng/năm gia nhập công ty có hợp lệ hay không
 bool Date::isValidDateOfJoinAtCompany(Date dateOfBirth) {
-	short nDayInMonth = 0;
+	int nDayInMonth = 0;
 	if (year - dateOfBirth.year < 16 || year - dateOfBirth.year > 65) {
 		cout << "*** Not of working age!" << endl;
 		return false;

@@ -6,10 +6,15 @@
 
 class Date
 {
+private:
+	int day;
+	int month;
+	int year;
 public:
-	short day;
-	short month;
-	short year;
+	// Khai báo các phương thức get các thuộc tính private
+	int getDay();
+	int getMonth();
+	int getYear();
 
 	// Khai báo phương thức kiểm tra ngày/tháng/năm sinh có hợp lệ hay không
 	bool isValidDateOfBirth();

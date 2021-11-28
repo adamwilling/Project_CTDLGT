@@ -2,84 +2,42 @@
 using namespace std;
 
 
-// Cài đặt phương thức get và set thuộc tính id
+// Cài đặt các phương thức get các thuộc tính cần thiết
 string Employee::getId() {
 	return id;
 }
-void Employee::setId(string id) {
-	this->id = id;
-}
-
-// Cài đặt phương thức get và set thuộc tính fullName
 string Employee::getFullName() {
 	return fullName;
 }
-void Employee::setFullName(string fullName) {
-	this->fullName = fullName;
+string Employee::getLastName() {
+	int idx;
+	idx = fullName.find_last_of(" ");
+	string lastName(fullName.substr(idx + 1));
+	return lastName;
 }
-
-// Cài đặt phương thức get và set thuộc tính gender
 string Employee::getGender() {
 	return gender;
 }
-void Employee::setGender(string gender) {
-	this->gender = gender;
-}
-
-// Cài đặt phương thức get và set thuộc tính dateOfBirth
 Date Employee::getDateOfBirth() {
 	return dateOfBirth;
 }
-void Employee::setDateOfBirth(string date) {
-	dateOfBirth.toDate(date);
-}
-
-// Cài đặt phương thức get và set thuộc tính dateOfJoinAtComany
 Date Employee::getDateOfJoinAtCompany() {
 	return dateOfJoinAtCompany;
 }
-void Employee::setDateOfJoinAtCompany(string date) {
-	dateOfJoinAtCompany.toDate(date);
-}
-
-// Cài đặt phương thức get và set thuộc tính email
 string Employee::getEmail() {
 	return email;
 }
-void Employee::setEmail(string email) {
-	this->email = email;
-}
-
-// Cài đặt phương thức get và set thuộc tính phoneNumber
 string Employee::getPhoneNumber() {
 	return phoneNumber;
 }
-void Employee::setPhoneNumber(string phoneNumber) {
-	this->phoneNumber = phoneNumber;
-}
-
-// Cài đặt phương thức get và set thuộc tính departmentId
 string Employee::getDepartmentId() {
 	return departmentId;
 }
-void Employee::setDepartmentId(string departmentId) {
-	this->departmentId = departmentId;
-}
-
-// Cài đặt phương thức get và set thuộc tính positionId
 string Employee::getPositionId() {
 	return positionId;
 }
-void Employee::setPositionId(string positionId) {
-	this->positionId = positionId;
-}
-
-// Khai báo phương thức get và set thuộc tính salary
 unsigned int Employee::getSalary() {
 	return salary;
-}
-void Employee::setSalary(unsigned int salary) {
-	this->salary = salary;
 }
 
 // Cài đặt phương thức nhập vào thông tin cho nhân viên

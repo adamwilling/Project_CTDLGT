@@ -41,6 +41,6 @@ public:
 	ListEmployee filterEmployee(int, string);
 
 	// Khai báo phương thức sắp xếp danh sách nhân viên
-	void sortListEmployee(int, int);
+	void sortListEmployee(int);
 };
 #endif

@@ -225,32 +225,21 @@ void sortManagement() {
 			checkChoice = isValidChoice(choice, listChoice, nChoice);
 		} while (!checkChoice); // Kiểm tra lựa chọn nhập vào có hợp lệ hay không
 
-		int type;
-		cout << "- Enter type (0: ascending, 1: descending): ";
-		do {
-			cin >> type;
-			if (type != 0 && type != 1) {
-				cout << "*** Please enter 0 or 1: ";
-			}
-		} while (type != 0 && type != 1); // Kiểm tra lựa chọn nhập vào có hợp lệ hay không
-
-		cin.ignore();
-
 		// Do string không dùng được switch case nên phải dùng if/else if/else
 		if (choice == "si") {
-			listEmployee.sortListEmployee(1, type);
+			listEmployee.sortListEmployee(1);
 		}
 		else if (choice == "sn") {
-			listEmployee.sortListEmployee(2, type);
+			listEmployee.sortListEmployee(2);
 		}
 		else if (choice == "sd") {
-			listEmployee.sortListEmployee(3, type);
+			listEmployee.sortListEmployee(3);
 		}
 		else if (choice == "sj") {
-			listEmployee.sortListEmployee(4, type);
+			listEmployee.sortListEmployee(4);
 		}
 		else if (choice == "ss") {
-			listEmployee.sortListEmployee(5, type);
+			listEmployee.sortListEmployee(5);
 		}
 		else if (choice == "ex") {
 			break;
