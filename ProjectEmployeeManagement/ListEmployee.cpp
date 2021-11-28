@@ -59,13 +59,13 @@ void ListEmployee::showListEmployee(ListDepartment listDepartment, ListPosition 
 }
 
 // Cài đặt phương thức sửa thông tin nhân viên
-void ListEmployee::editEmployee() {
+void ListEmployee::updateEmployee(ListDepartment listDepartment, ListPosition listPosition) {
 	string id;
 	cout << "- Enten employee's id to edit info: ";
 	getline(cin, id);
 	for (int i = 0; i < listEmployee.size(); ++i) {
-		if (listEmployee[i].getId() == id) {
-			listEmployee[i].updateInfo(listEmployee);
+		if (listEmployee[i].getEmployeeId() == id) {
+			listEmployee[i].updateInfo(listEmployee, listDepartment, listPosition);
 			return;
 		}
 	}
@@ -78,7 +78,7 @@ void ListEmployee::deleteEmployee() {
 	cout << "- Enten employee's id to delete: ";
 	getline(cin, id);
 	for (int i = 0; i < listEmployee.size(); ++i) {
-		if (listEmployee[i].getId() == id) {
+		if (listEmployee[i].getEmployeeId() == id) {
 			listEmployee.erase(listEmployee.begin() + i);
 			cout << "* Delete employee with id " << id << " successfully!" << endl;
 			return;

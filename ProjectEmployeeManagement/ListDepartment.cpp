@@ -8,7 +8,7 @@ vector<Department> ListDepartment::getListDepartment() {
 // Cài đặt phương thức thêm phòng ban từ bàn phím
 void ListDepartment::insertDepartment() {
 	Department newDepartment;
-	newDepartment.inputInfo();
+	newDepartment.inputInfo(listDepartment);
 	listDepartment.push_back(newDepartment);
 }
 void ListDepartment::insertDepartment(Department newDepartment) {

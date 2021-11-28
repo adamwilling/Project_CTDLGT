@@ -7,9 +7,10 @@
 
 #include "library.h"
 #include "Employee.h"
-#include "ListDepartment.h"
 
+class Employee;
 class Department;
+class Position;
 
 string standardizeString(string);
 
@@ -21,15 +22,19 @@ bool isChar(char);
 
 bool isDigit(char);
 
-bool isValidPositionId(string, Department);
-
 bool isValidChoice(string, string*, int);
 
 bool isValidEmail(string);
 
 bool isValidPhoneNumber(string);
 
-bool isValidDepartmentId(string, vector<Department>);
+bool isExistedEmployeeId(string, vector<Employee>);
+
+bool isExistedDepartmentId(string, vector<Department>);
+
+bool isExistedPositionId(string, vector<Position>);
+
+bool isValidPositionId(string, Department);
 
 vector<string> splitStringToVector(string, string);
 

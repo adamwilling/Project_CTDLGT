@@ -22,19 +22,13 @@ public:
 		departmentName = "";
 	}
 
-	// Khai báo phương thức get và set thuộc tính id
+	// Khai báo các phương thức get các thuộc tính private
 	string getDepartmentId();
-	void setDepartmentId(string);
-
-	// Khai báo phương thức get và set thuộc tính fullName
 	string getDepartmentName();
-	void setDepartmentName(string);
-
-	// Khai báo phương thức get thuộc tính listPositionChild
 	vector<string> getListPositionChild();
 
 	// Khai báo phương thức nhập vào thông tin phòng ban
-	void inputInfo();
+	void inputInfo(vector<Department>);
 	void importInfo(ifstream&);
 
 	// Khai báo phương thức xuát thông tin phòng ban ra tệp

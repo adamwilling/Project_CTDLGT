@@ -15,7 +15,7 @@ class ListDepartment;
 class Employee
 {
 private:
-	string id;
+	string employeeId;
 	string fullName;
 	string gender;
 	Date dateOfBirth;
@@ -27,7 +27,7 @@ private:
 	unsigned int salary;
 public:
 	// Khai báo các phương thức get các thuộc tính cần thiết
-	string getId();
+	string getEmployeeId();
 	string getFullName();
 	string getLastName();
 	string getGender();
@@ -47,12 +47,12 @@ public:
 	void exporttInfo(ofstream&);
 
 	// Khai báo phương thức cập nhật thông tin nhât viên
-	void updateInfo(vector<Employee>);
+	void updateInfo(vector<Employee>, ListDepartment, ListPosition);
 
 	// Khai báo phương thức hiển thị thông tin nhân viên
 	void showInfo(int, ListDepartment, ListPosition);
 
 	// Hàm kiểm tra id đã tồn tại hay chưa
-	bool isValidId(string id, vector<Employee>);
+	bool isExistId(string id, vector<Employee>);
 };
 #endif

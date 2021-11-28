@@ -32,7 +32,7 @@ public:
 	void showListEmployee(ListDepartment, ListPosition);
 
 	// Khai báo phương thức sửa thông tin nhân viên
-	void editEmployee();
+	void updateEmployee(ListDepartment, ListPosition);
 
 	// Khai báo phương thức xóa nhân viên
 	void deleteEmployee();

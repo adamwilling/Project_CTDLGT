@@ -3,8 +3,8 @@ using namespace std;
 
 
 // Cài đặt các phương thức get các thuộc tính cần thiết
-string Employee::getId() {
-	return id;
+string Employee::getEmployeeId() {
+	return employeeId;
 }
 string Employee::getFullName() {
 	return fullName;
@@ -42,13 +42,16 @@ unsigned int Employee::getSalary() {
 
 // Cài đặt phương thức nhập vào thông tin cho nhân viên
 void Employee::inputInfo(vector<Employee> listEmployee, ListDepartment listDepartment, ListPosition listPosition) {
-	bool checkId = true;
-	cout << "+ Enter id: ";
+	bool checkEmployeeIdExisted;
+	cout << "+ Enter employee id: ";
 	do {
-		getline(cin, id);
-		checkId = isValidId(id, listEmployee);
-	} while (!checkId);
-	id = standardizeString(id);
+		getline(cin, employeeId);
+		checkEmployeeIdExisted = isExistedEmployeeId(employeeId, listEmployee);
+		if (checkEmployeeIdExisted) {
+			cout << "*** Employee id already exists! Re-enter: ";
+		}
+	} while (checkEmployeeIdExisted);
+	employeeId = standardizeString(employeeId);
 
 	cout << "+ Enter name: ";
 	getline(cin, fullName);
@@ -63,37 +66,43 @@ void Employee::inputInfo(vector<Employee> listEmployee, ListDepartment listDepar
 
 	dateOfJoinAtCompany.inputDateOfJoinAtCompany(dateOfBirth);
 
-	bool checkEmail = true;
+	bool checkValidEmail;
 	cout << "+ Enter email: ";
 	do {
 		getline(cin, email);
-		checkEmail = isValidEmail(email);
-	} while (!checkEmail);
+		checkValidEmail = isValidEmail(email);
+	} while (!checkValidEmail);
 
-	bool checkPhoneNumber = true;
+	bool checkValidPhoneNumber;
 	cout << "+ Enter phone number: ";
 	do {
 		getline(cin, phoneNumber);
-		checkPhoneNumber = isValidPhoneNumber(phoneNumber);
-	} while (!checkPhoneNumber);
+		checkValidPhoneNumber = isValidPhoneNumber(phoneNumber);
+	} while (!checkValidPhoneNumber);
 
 	cout << "+ Enter department id: ";
-	bool checkDepartment = true;
+	bool checkDepartmentIdExisted;
 	do {
 		getline(cin, departmentId);
-		checkDepartment = isValidDepartmentId(departmentId, listDepartment.getListDepartment());
-	} while (!checkDepartment);
+		checkDepartmentIdExisted = isExistedDepartmentId(departmentId, listDepartment.getListDepartment());
+		if (!checkDepartmentIdExisted) {
+			cout << "*** Not found department with id \"" << departmentId << "\"! Re-enter: ";
+		}
+	} while (!checkDepartmentIdExisted);
 
 	Department department = listDepartment.searchDepartmentById(departmentId);
 	cout << "* List position managed by this department: ";
 	department.showListPositionChild(listPosition);
 
 	cout << "+ Enter position id: ";
-	bool checkPositionId = true;
+	bool checkValidPositionId;
 	do {
 		getline(cin, positionId);
-		checkPositionId = isValidPositionId(positionId, department);
-	} while (!checkPositionId);
+		checkValidPositionId = isValidPositionId(positionId, department);
+		if (!checkValidPositionId) {
+			cout << "*** The position id you just entered is not in department \"" << department.getDepartmentName() << "\"! Re-enter: ";
+		}
+	} while (!checkValidPositionId);
 
 	cout << "+ Enter salary: ";
 	cin >> salary;
@@ -101,7 +110,7 @@ void Employee::inputInfo(vector<Employee> listEmployee, ListDepartment listDepar
 	cin.ignore();
 }
 void Employee::importInfo(ifstream& input) {
-	getline(input, id, ',');
+	getline(input, employeeId, ',');
 
 	getline(input, fullName, ',');
 
@@ -130,7 +139,7 @@ void Employee::importInfo(ifstream& input) {
 
 // Cài đặt phương thức xuất thông tin nhân viên ra tệp
 void Employee::exporttInfo(ofstream& output) {
-	output << id << ",";
+	output << employeeId << ",";
 
 	output << fullName << ",";
 
@@ -150,14 +159,7 @@ void Employee::exporttInfo(ofstream& output) {
 }
 
 // Cài đặt phương thức nhập vào thông tin cho nhân viên
-void Employee::updateInfo(vector<Employee> listEmployee) {
-	bool checkId = true;
-	cout << "+ Enter new id: ";
-	do {
-		getline(cin, id);
-		checkId = isValidId(id, listEmployee);
-	} while (!checkId);
-	id = standardizeString(id);
+void Employee::updateInfo(vector<Employee> listEmployee, ListDepartment listDepartment, ListPosition listPosition) {
 
 	cout << "+ Enter new name: ";
 	getline(cin, fullName);
@@ -172,27 +174,45 @@ void Employee::updateInfo(vector<Employee> listEmployee) {
 
 	dateOfJoinAtCompany.inputDateOfJoinAtCompany(dateOfBirth);
 
-	bool checkEmail = true;
+	bool checkValidEmail;
 	cout << "+ Enter new email: ";
 	do {
 		getline(cin, email);
-		checkEmail = isValidEmail(email);
-	} while (!checkEmail);
+		checkValidEmail = isValidEmail(email);
+	} while (!checkValidEmail);
 
-	bool checkPhoneNumber = true;
+	bool checkValidPhoneNumber;
 	cout << "+ Enter new phone number: ";
 	do {
 		getline(cin, phoneNumber);
-		checkPhoneNumber = isValidPhoneNumber(phoneNumber);
-	} while (!checkPhoneNumber);
+		checkValidPhoneNumber = isValidPhoneNumber(phoneNumber);
+	} while (!checkValidPhoneNumber);
 
 	cout << "+ Enter new department id: ";
-	getline(cin, departmentId);
+	bool checkDepartmentIdExisted;
+	do {
+		getline(cin, departmentId);
+		checkDepartmentIdExisted = isExistedDepartmentId(departmentId, listDepartment.getListDepartment());
+		if (!checkDepartmentIdExisted) {
+			cout << "*** Not found department with id \"" << departmentId << "\"! Re-enter: ";
+		}
+	} while (!checkDepartmentIdExisted);
+
+	Department department = listDepartment.searchDepartmentById(departmentId);
+	cout << "* List position managed by this department: ";
+	department.showListPositionChild(listPosition);
 
 	cout << "+ Enter new position id: ";
-	getline(cin, positionId);
+	bool checkValidPositionId;
+	do {
+		getline(cin, positionId);
+		checkValidPositionId = isValidPositionId(positionId, department);
+		if (!checkValidPositionId) {
+			cout << "*** The position id you just entered is not in department \"" << department.getDepartmentName() << "\"! Re-enter: ";
+		}
+	} while (!checkValidPositionId);
 
-	cout << "+ Enter new salary: ";
+	cout << "+ Enter salary: ";
 	cin >> salary;
 
 	cin.ignore();
@@ -205,16 +225,5 @@ void Employee::showInfo(int key, ListDepartment listDepartment, ListPosition lis
 	departmentName = listDepartment.searchDepartmentById(departmentId).getDepartmentName();
 	string positionName("");
 	positionName = listPosition.searchPositionById(positionId).getPositionName();
-	cout << setw(5) << key << setw(12) << id << setw(30) << fullName << setw(10) << gender << setw(15) << dateOfBirth.toString() << setw(15) << dateOfJoinAtCompany.toString() << setw(40) << email << setw(15) << phoneNumber << setw(40) << departmentName << setw(40) << positionName << setw(15) << salary << endl;
-}
-
-// Hàm kiểm tra id đã tồn tại hay chưa
-bool Employee::isValidId(string id, vector<Employee> listEmployee) {
-	for (Employee employee : listEmployee) {
-		if (employee.getId() == id) {
-			cout << "*** Id already exists! Re-enter: ";
-			return false;
-		}
-	}
-	return true;
+	cout << setw(5) << key << setw(12) << employeeId << setw(30) << fullName << setw(10) << gender << setw(15) << dateOfBirth.toString() << setw(15) << dateOfJoinAtCompany.toString() << setw(40) << email << setw(15) << phoneNumber << setw(40) << departmentName << setw(40) << positionName << setw(15) << salary << endl;
 }

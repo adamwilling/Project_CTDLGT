@@ -67,14 +67,14 @@ int main() {
 void employeeManagement() {
 	system("CLS");
 	int nChoice = 9;
-	string listChoice[]{ "is","ip","sl","ed","de","fe","se","ep","ex" };
+	string listChoice[]{ "is","ip","sl","ud","de","fe","se","ep","ex" };
 	string choice;
 	do {
 		cout << endl << setfill('=') << setw(16) << "=" << "Employee Management" << setw(16) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press is to insert employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press ip to import list employee from file--" << "|" << endl;
 		cout << setw(50) << left << "--Press sl to show list employee--" << "|" << endl;
-		cout << setw(50) << left << "--Press ed to edit employee--" << "|" << endl;
+		cout << setw(50) << left << "--Press ud to update info employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press de to delete employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press fe to filter employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press se to sort employee--" << "|" << endl;
@@ -109,8 +109,8 @@ void employeeManagement() {
 		else if (choice == "sl") {
 			listEmployee.showListEmployee(listDepartment, listPosition);
 		}
-		else if (choice == "ed") {
-			listEmployee.editEmployee();
+		else if (choice == "ud") {
+			listEmployee.updateEmployee(listDepartment, listPosition);
 		}
 		else if (choice == "de") {
 			listEmployee.deleteEmployee();

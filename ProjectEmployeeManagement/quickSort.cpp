@@ -3,14 +3,14 @@
 #pragma region Quick sort theo id
 int partitionById(vector<Employee>& values, int left, int right) {
     int pivotIndex = left + (right - left) / 2;
-    string pivotValue = values[pivotIndex].getId();
+    string pivotValue = values[pivotIndex].getEmployeeId();
     int i = left, j = right;
     Employee temp;
     while (i <= j) {
-        while (values[i].getId() < pivotValue) {
+        while (values[i].getEmployeeId() < pivotValue) {
             i++;
         }
-        while (values[j].getId() > pivotValue) {
+        while (values[j].getEmployeeId() > pivotValue) {
             j--;
         }
         if (i <= j) {

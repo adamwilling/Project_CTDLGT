@@ -147,14 +147,33 @@ string joinVectorToString(vector<string> str, string token) {
 	return stream.str();
 }
 
-// Hàm kiểm tra departmentId có hợp lệ hay không
-bool isValidDepartmentId(string departmentId, vector<Department> listDepartment) {
+// Hàm kiểm tra id nhân viên đã tồn tại hay chưa
+bool isExistedEmployeeId(string employeeId, vector<Employee> listEmployee) {
+	for (Employee employee : listEmployee) {
+		if (employee.getEmployeeId() == employeeId) {
+			return true;
+		}
+	}
+	return false;
+}
+
+// Hàm kiểm tra departmentId đã tồn tại hay chưa
+bool isExistedDepartmentId(string departmentId, vector<Department> listDepartment) {
 	for (Department department : listDepartment) {
 		if (department.getDepartmentId() == departmentId) {
 			return true;
 		}
 	}
-	cout << "*** Not found department with id " << departmentId << "! Re-enter: ";
+	return false;
+}
+
+// Hàm kiểm tra positionId đã tồn tại hay chưa
+bool isExistedPositionId(string positionId, vector<Position> listPosition) {
+	for (Position position : listPosition) {
+		if (position.getPositionId() == positionId) {
+			return true;
+		}
+	}
 	return false;
 }
 
@@ -166,6 +185,5 @@ bool isValidPositionId(string positionId, Department department) {
 			return true;
 		}
 	}
-	cout << "*** The position id you just entered is not in department " << department.getDepartmentName() << "! Re-enter: ";
 	return false;
 }

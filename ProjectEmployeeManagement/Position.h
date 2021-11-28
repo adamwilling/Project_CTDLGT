@@ -6,6 +6,7 @@
 #endif  // _MSC_VER
 
 #include "library.h"
+#include "support.h"
 
 class Position {
 private:
@@ -17,16 +18,12 @@ public:
 		positionName = "";
 	}
 
-	// Khai báo phương thức get và set thuộc tính positionId
+	// Khai báo các phương thức get các thuộc tính private
 	string getPositionId();
-	void setPositionId(string);
-
-	// Khai báo phương thức get và set thuộc tính positionName
 	string getPositionName();
-	void setPositionName(string);
 
 	// Khai báo phương thức nhập vào thông tin phòng ban
-	void inputInfo();
+	void inputInfo(vector<Position>);
 	void importInfo(ifstream&);
 
 	// Khai báo phương thức xuát thông tin phòng ban ra tệp

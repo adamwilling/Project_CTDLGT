@@ -2,35 +2,31 @@
 using namespace std;
 
 
-// Cài đặt phương thức get và set thuộc tính id
+// Cài đặt các phương thức get các thuộc tính private
 string Department::getDepartmentId() {
 	return departmentId;
 }
-void Department::setDepartmentId(string departmentId) {
-	this->departmentId = departmentId;
-}
-
-// Cài đặt phương thức get và set thuộc tính name
 string Department::getDepartmentName() {
 	return departmentName;
 }
-void Department::setDepartmentName(string departmentName) {
-	this->departmentName = departmentName;
-}
-
-// Khai báo phương thức get thuộc tính listPositionChild
 vector<string> Department::getListPositionChild() {
 	return listPositionChild;
 }
 
 // Cài đặt phương thức nhập vào thông tin cho phòng ban
-void Department::inputInfo() {
-	cout << "+ Enter id: ";
-	getline(cin, departmentId, ',');
+void Department::inputInfo(vector<Department> listDepartment) {
+	cout << "+ Enter department id: ";
+	bool checkDepartmentIdExisted;
+	do {
+		getline(cin, departmentId);
+		checkDepartmentIdExisted = isExistedDepartmentId(departmentId, listDepartment);
+		if (checkDepartmentIdExisted) {
+			cout << "*** Department id already exists! Re-enter: ";
+		}
+	} while (checkDepartmentIdExisted);
 
-	cout << "+ Enter name: ";
+	cout << "+ Enter department name: ";
 	getline(cin, departmentName);
-	departmentName = standardizeString(departmentName);
 
 	cout << "+ Enter list position's id managed by this department (seperate by space) (Ex: \"1 2 3 4 5\"): ";
 	string strListPosition;
@@ -46,6 +42,8 @@ void Department::importInfo(ifstream& input) {
 
 	string strListPosition;
 	getline(input, strListPosition);
+	strListPosition = standardizeString(strListPosition);
+
 	listPositionChild = splitStringToVector(strListPosition, " ");
 }
 
@@ -61,13 +59,14 @@ void Department::exporttInfo(ofstream& output) {
 
 // Cài đặt phương thức nhập vào thông tin cho phòng ban
 void Department::updateInfo() {
-	cout << "+ Enter new name: ";
+
+	cout << "+ Enter new department name: ";
 	getline(cin, departmentName);
-	departmentName = standardizeString(departmentName);
 
 	cout << "+ Enter new list position's id managed by this department (seperate by space) (Ex: \"1 2 3 4 5\"): ";
 	string strListPosition;
 	getline(cin, strListPosition);
+	strListPosition = standardizeString(strListPosition);
 
 	listPositionChild = splitStringToVector(strListPosition, " ");
 }

@@ -1,27 +1,26 @@
 ﻿#include "Position.h"
 
-// Cài đặt phương thức get và set thuộc tính positionId
+// Cài đặt các phương thức get các thuộc tính private
 string Position::getPositionId() {
 	return positionId;
 }
-void Position::setPositionId(string positionId) {
-	this->positionId = positionId;
-}
-
-// Cài đặt phương thức get và set thuộc tính positionName
 string Position::getPositionName() {
 	return positionName;
 }
-void Position::setPositionName(string positionName) {
-	this->positionName = positionName;
-}
 
 // Cài đặt phương thức nhập vào thông tin cho phòng ban
-void Position::inputInfo() {
-	cout << "+ Enter id: ";
-	getline(cin, positionId, ',');
+void Position::inputInfo(vector<Position> listPosition) {
+	cout << "+ Enter position id: ";
+	bool checkPositionIdExisted;
+	do {
+		getline(cin, positionId);
+		checkPositionIdExisted = isExistedPositionId(positionId, listPosition);
+		if (checkPositionIdExisted) {
+			cout << "*** Position id already exists! Re-enter: ";
+		}
+	} while (checkPositionIdExisted);
 
-	cout << "+ Enter name: ";
+	cout << "+ Enter position name: ";
 	getline(cin, positionName);
 }
 

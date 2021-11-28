@@ -8,7 +8,7 @@ vector<Position> ListPosition::getListPosition() {
 // Cài đặt phương thức thêm phòng ban từ bàn phím
 void ListPosition::insertPosition() {
 	Position newPosition;
-	newPosition.inputInfo();
+	newPosition.inputInfo(listPosition);
 	listPosition.push_back(newPosition);
 }
 void ListPosition::insertPosition(Position newPosition) {
