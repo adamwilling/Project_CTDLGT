@@ -73,14 +73,13 @@ void Department::updateInfo() {
 
 // Cài đặtphương thức hiển thị những chức vụ nằm bên trong phòng ban
 void Department::showListPositionChild(ListPosition listPositionChild) {
-	int i(0);
-	for (string positionId : this->listPositionChild) {
-		string positionName = listPositionChild.searchPositionById(positionId).getPositionName();
+	int nPosition = this->listPositionChild.size();
+	for (int i = 0; i < nPosition; ++i) {
+		string positionName = listPositionChild.searchPositionById(this->listPositionChild[i]).getPositionName();
 		if (i) {
 			cout << " - ";
 		}
-		cout << positionId << ". " << positionName;
-		++i;
+		cout << this->listPositionChild[i] << ". " << positionName;
 	}
 	cout << endl;
 }

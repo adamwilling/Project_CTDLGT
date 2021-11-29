@@ -119,8 +119,9 @@ bool Date::toDate(string strDate) {
 		return false;
 	}
 
+	size_t i;
 	// Xóa hết tất cả khoảng trắng thừa
-	for (size_t i = 0; i < strDate.length(); ++i) {
+	for (i = 0; i < strDate.length(); ++i) {
 		if (strDate[i] == ' ') {
 			strDate.erase(strDate.begin() + i);
 			i--;
@@ -129,7 +130,6 @@ bool Date::toDate(string strDate) {
 
 	// Chuyển những giá trị của chuỗi thành ngày tháng năm
 	string dStr, mStr, yStr;
-	size_t i;
 	for (i = 0; i < strDate.length(); ++i) { // Gán giá trị cho ngày
 		if (strDate[i] == '/') {
 			i++;

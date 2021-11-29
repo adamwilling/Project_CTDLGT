@@ -56,18 +56,15 @@ void ListPosition::showListPosition() {
 }
 
 // Cài đặt phương thức sửa thông tin nhân viên
-void ListPosition::editPosition() {
-	string id;
-	cout << "- Enten Position's id to edit info: ";
-	getline(cin, id);
+bool ListPosition::updatePosition(string positionId) {
 	int sizeList = listPosition.size();
-	for (int i = 0; i < sizeList; i++) {
-		if (listPosition[i].getPositionId() == id) {
+	for (int i = 0; i < sizeList; ++i) {
+		if (listPosition[i].getPositionId() == positionId) {
 			listPosition[i].updateInfo();
-			return;
+			return true;
 		}
 	}
-	cout << "* Not found position with id " << id << "!" << endl;
+	return false;
 }
 
 // Cài đặt phương thức xóa nhân viên

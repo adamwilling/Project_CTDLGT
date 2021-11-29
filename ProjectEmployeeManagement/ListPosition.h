@@ -30,7 +30,7 @@ public:
 	void showListPosition();
 
 	// Khai báo phương thức sửa thông tin chức vụ
-	void editPosition();
+	bool updatePosition(string);
 
 	// Khai báo phương thức xóa chức vụ
 	void deletePosition();

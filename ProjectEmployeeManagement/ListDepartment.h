@@ -31,10 +31,10 @@ public:
 	void showListDepartment(ListPosition);
 
 	// Khai báo phương thức sửa thông tin nhân viên
-	void editDepartment();
+	bool updateDepartment(string);
 
 	// Khai báo phương thức xóa nhân viên
-	void deleteDepartment();
+	bool deleteDepartment(string);
 
 	// Khai báo phương thức tìm kiếm phòng ban bằng mã phòng ban
 	Department searchDepartmentById(string);

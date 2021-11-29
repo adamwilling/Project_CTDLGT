@@ -29,14 +29,20 @@ bool ListDepartment::importListDepartment(string fileName) {
 	return true;
 }
 
-// Cài đặt phương thức xuất danh sách phòng ban từ tệp
+// Cài đặt phương thức xuất danh sách phòng ban ra file
 void ListDepartment::exportListDepartment() {
 	string fileName;
 	cout << "- Enter file name: ";
 	getline(cin, fileName);
 	ofstream output(fileName);
-	for (auto department : listDepartment) {
-		department.exporttInfo(output);
+	int sizeList = listDepartment.size();
+	if (sizeList > 0) {
+		for (int i = 0; i < sizeList; ++i) {
+			listDepartment[i].exporttInfo(output);
+		}
+	}
+	else {
+		output << "* List department is empty!" << endl;
 	}
 	cout << "* Export list department to file " << fileName << " successfully!" << endl;
 }
@@ -56,41 +62,35 @@ void ListDepartment::showListDepartment(ListPosition listPosition) {
 }
 
 // Cài đặt phương thức sửa thông tin phòng ban
-void ListDepartment::editDepartment() {
-	string departmentId;
-	cout << "- Enten department's id to edit info: ";
-	getline(cin, departmentId);
+bool ListDepartment::updateDepartment(string departmentId) {
 	int sizeList = listDepartment.size();
 	for (int i = 0; i < sizeList; ++i) {
 		if (listDepartment[i].getDepartmentId() == departmentId) {
 			listDepartment[i].updateInfo();
-			return;
+			return true;
 		}
 	}
-	cout << "* Not found department with id " << departmentId << "!" << endl;
+	return false;
 }
 
 // Cài đặt phương thức xóa phòng ban
-void ListDepartment::deleteDepartment() {
-	string departmentId;
-	cout << "- Enten department's id to delete: ";
-	getline(cin, departmentId);
+bool ListDepartment::deleteDepartment(string departmentId) {
 	int sizeList = listDepartment.size();
-	for (int i = 0; i < sizeList; i++) {
+	for (int i = 0; i < sizeList; ++i) {
 		if (listDepartment[i].getDepartmentId() == departmentId) {
 			listDepartment.erase(listDepartment.begin() + i);
-			cout << "* Delete department with id " << departmentId << " successfully!" << endl;
-			return;
+			return true;
 		}
 	}
-	cout << "* Not found department with " << departmentId << "!" << endl;
+	return false;
 }
 
 // Cài đặt phương thức tìm kiếm phòng ban bằng mã phòng ban
 Department ListDepartment::searchDepartmentById(string departmentId) {
-	for (Department department : listDepartment) {
-		if (department.getDepartmentId() == departmentId) {
-			return department;
+	int sizeList = listDepartment.size();
+	for (int i = 0; i < sizeList; ++i) {
+		if (listDepartment[i].getDepartmentId() == departmentId) {
+			return listDepartment[i];
 		}
 	}
 	return Department();

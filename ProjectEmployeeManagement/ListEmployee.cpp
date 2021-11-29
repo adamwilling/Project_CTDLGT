@@ -39,16 +39,17 @@ void ListEmployee::exportListEmployee() {
 	for (auto employee : listEmployee) {
 		employee.exporttInfo(output);
 	}
-	cout << "* Export list employee to file " << fileName << " successfully!" << endl;
+	cout << "* Export list employee to file \"" << fileName << "\" successfully!" << endl;
 }
 
 // Cài đặt phương thức hiển thị danh sách nhân viên
 void ListEmployee::showListEmployee(ListDepartment listDepartment, ListPosition listPosition) {
-	if (listEmployee.size() > 0) {
+	int sizeList = listEmployee.size();
+	if (sizeList > 0) {
 		cout << setfill('-') << setw(237) << "-" << setfill(' ');
 		cout << setw(5) << "STT" << setw(12) << "Id" << setw(30) << "Full name" << setw(10) << "Gender" << setw(15) << "Date of birth" << setw(15) << "Join at" << setw(40) << "Email" << setw(15) << "Phone number" << setw(40) << "Department" << setw(40) << "Position" << setw(15) << "Salary (VND)" << endl;
 		cout << setfill('-') << setw(237) << "-" << setfill(' ');
-		for (int i = 0; i < listEmployee.size(); i++) {
+		for (int i = 0; i < sizeList; ++i) {
 			listEmployee[i].showInfo(i + 1, listDepartment, listPosition);
 			cout << setfill('-') << setw(237) << "-" << setfill(' ');
 		}
@@ -59,32 +60,27 @@ void ListEmployee::showListEmployee(ListDepartment listDepartment, ListPosition 
 }
 
 // Cài đặt phương thức sửa thông tin nhân viên
-void ListEmployee::updateEmployee(ListDepartment listDepartment, ListPosition listPosition) {
-	string id;
-	cout << "- Enten employee's id to edit info: ";
-	getline(cin, id);
-	for (int i = 0; i < listEmployee.size(); ++i) {
-		if (listEmployee[i].getEmployeeId() == id) {
+bool ListEmployee::updateEmployee(string employeeId, ListDepartment listDepartment, ListPosition listPosition) {
+	int sizeList = listEmployee.size();
+	for (int i = 0; i < sizeList; ++i) {
+		if (listEmployee[i].getEmployeeId() == employeeId) {
 			listEmployee[i].updateInfo(listEmployee, listDepartment, listPosition);
-			return;
+			return true;
 		}
 	}
-	cout << "* Not found employee with id " << id << "!" << endl;
+	return false;
 }
 
 // Cài đặt phương thức xóa nhân viên
-void ListEmployee::deleteEmployee() {
-	string id;
-	cout << "- Enten employee's id to delete: ";
-	getline(cin, id);
-	for (int i = 0; i < listEmployee.size(); ++i) {
-		if (listEmployee[i].getEmployeeId() == id) {
+bool ListEmployee::deleteEmployee(string employeeId) {
+	int sizeList = listEmployee.size();
+	for (int i = 0; i < sizeList; ++i) {
+		if (listEmployee[i].getEmployeeId() == employeeId) {
 			listEmployee.erase(listEmployee.begin() + i);
-			cout << "* Delete employee with id " << id << " successfully!" << endl;
-			return;
+			return true;
 		}
 	}
-	cout << "* Not found employee with " << id << "!" << endl;
+	return false;
 }
 
 // Cài đặt phương thức lọc nhân viên
@@ -132,26 +128,27 @@ ListEmployee ListEmployee::filterEmployee(int choice, string value) {
 
 // Cài đặt phương thức sắp xếp danh sách nhân viên
 void ListEmployee::sortListEmployee(int choice) {
+	int sizeList = listEmployee.size();
 	switch (choice)
 	{
 	case 1: {
-		quickSortById(listEmployee, 0, listEmployee.size() - 1);
+		quickSortById(listEmployee, 0, sizeList - 1);
 		break;
 	}
 	case 2: {
-		quickSortByLastName(listEmployee, 0, listEmployee.size() - 1);
+		quickSortByLastName(listEmployee, 0, sizeList - 1);
 		break;
 	}
 	case 3: {
-		quickSortByDateOfBirth(listEmployee, 0, listEmployee.size() - 1);
+		quickSortByDateOfBirth(listEmployee, 0, sizeList - 1);
 		break;
 	}
 	case 4: {
-		quickSortByDateOfJoinAtCompany(listEmployee, 0, listEmployee.size() - 1);
+		quickSortByDateOfJoinAtCompany(listEmployee, 0, sizeList - 1);
 		break;
 	}
 	case 5: {
-		quickSortBySalary(listEmployee, 0, listEmployee.size() - 1);
+		quickSortBySalary(listEmployee, 0, sizeList - 1);
 		break;
 	}
 	default:

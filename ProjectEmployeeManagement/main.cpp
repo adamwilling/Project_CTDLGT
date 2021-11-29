@@ -67,13 +67,13 @@ int main() {
 void employeeManagement() {
 	system("CLS");
 	int nChoice = 9;
-	string listChoice[]{ "is","ip","sl","ud","de","fe","se","ep","ex" };
+	string listChoice[]{ "is","ip","sh","ud","de","fe","se","ep","ex" };
 	string choice;
 	do {
 		cout << endl << setfill('=') << setw(16) << "=" << "Employee Management" << setw(16) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press is to insert employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press ip to import list employee from file--" << "|" << endl;
-		cout << setw(50) << left << "--Press sl to show list employee--" << "|" << endl;
+		cout << setw(50) << left << "--Press sh to show list employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press ud to update info employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press de to delete employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press fe to filter employee--" << "|" << endl;
@@ -106,14 +106,35 @@ void employeeManagement() {
 			} while (!isValidFile);
 			cout << "* Import data from file " << fileName << " into list department successfully!" << endl;
 		}
-		else if (choice == "sl") {
+		else if (choice == "sh") {
 			listEmployee.showListEmployee(listDepartment, listPosition);
 		}
 		else if (choice == "ud") {
-			listEmployee.updateEmployee(listDepartment, listPosition);
+			string employeeId;
+			cout << "- Enter employee id to update info: ";
+			getline(cin, employeeId);
+			bool isUpdated;
+			do {
+				isUpdated = listEmployee.updateEmployee(employeeId, listDepartment, listPosition);
+				if (!isUpdated) {
+					cout << "* Not found employee with id " << employeeId << "!" << endl;
+				}
+			} while (!isUpdated);
+			cout << "* Update info employee with id \"" << employeeId << "\" successfully!" << endl;
 		}
 		else if (choice == "de") {
-			listEmployee.deleteEmployee();
+			string employeeId;
+			cout << "- Enter employee id to delete: ";
+			bool isDeleted;
+			do {
+				getline(cin, employeeId);
+				isDeleted = listEmployee.deleteEmployee(employeeId);
+				if (!isDeleted) {
+					cout << "*** Not found employee with " << employeeId << "!" << endl;
+				}
+			} while (!isDeleted);
+			cout << "* Delete employee with id \"" << employeeId << "\" successfully!" << endl;
+			
 		}
 		else if (choice == "fe") {
 			filterManagement();
@@ -167,13 +188,13 @@ void filterManagement() {
 			result = listEmployee.filterEmployee(2, gender);
 		}
 		else if (choice == "fd") {
-			cout << "- Enter department to filter: ";
+			cout << "- Enter department id to filter: ";
 			string department;
 			getline(cin, department);
 			result = listEmployee.filterEmployee(3, department);
 		}
 		else if (choice == "fp") {
-			cout << "- Enter position to filter: ";
+			cout << "- Enter position id to filter: ";
 			string position;
 			getline(cin, position);
 			result = listEmployee.filterEmployee(4, position);
@@ -266,15 +287,15 @@ void sortManagement() {
 void departmentManagement() {
 	system("CLS");
 	int nChoice = 7;
-	string listChoice[]{ "is","ip","sl","ed","de","ep","ex" };
+	string listChoice[]{ "is","ip","sh","ud","dl","ep","ex" };
 	string choice;
 	do {
 		cout << endl << setfill('=') << setw(15) << "=" << "Department Management" << setw(15) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press is to insert department--" << "|" << endl;
 		cout << setw(50) << left << "--Press ip to import department from file--" << "|" << endl;
-		cout << setw(50) << left << "--Press sl to show list department--" << "|" << endl;
-		cout << setw(50) << left << "--Press ed to edit department--" << "|" << endl;
-		cout << setw(50) << left << "--Press de to delete department--" << "|" << endl;
+		cout << setw(50) << left << "--Press sh to show list department--" << "|" << endl;
+		cout << setw(50) << left << "--Press ud to update info department--" << "|" << endl;
+		cout << setw(50) << left << "--Press dl to delete department--" << "|" << endl;
 		cout << setw(50) << left << "--Press ep to export list department to file--" << "|" << endl;
 		cout << setw(50) << left << "--Press ex to exit department management--" << "|" << endl;
 		cout << setfill('=') << setw(51) << "=" << setfill(' ') << endl;
@@ -301,16 +322,36 @@ void departmentManagement() {
 					cout << "* Not found file \"" << fileName << "\". Re-enter: ";
 				}
 			} while (!isValidFile);
-			cout << "* Import data from file " << fileName << " into list department successfully!" << endl;
+			cout << "* Import data from file \"" << fileName << "\" into list department successfully!" << endl;
 		}
-		else if (choice == "sl") {
+		else if (choice == "sh") {
 			listDepartment.showListDepartment(listPosition);
 		}
-		else if (choice == "ed") {
-			listDepartment.editDepartment();
+		else if (choice == "ud") {
+			string departmentId;
+			cout << "- Enter department id: ";
+			bool isUpdated;
+			do {
+				getline(cin, departmentId);
+				isUpdated = listDepartment.updateDepartment(departmentId);
+				if (!isUpdated) {
+					cout << "*** Not found department with id \"" << departmentId << "\"!" << endl;
+				}
+			} while (!isUpdated);
+			cout << "* Update info department with id \"" << departmentId << "\" successfully!" << endl;
 		}
-		else if (choice == "de") {
-			listDepartment.deleteDepartment();
+		else if (choice == "dl") {
+			string departmentId;
+			cout << "- Enter department id: ";
+			bool isDeleted;
+			do {
+				getline(cin, departmentId);
+				isDeleted = listDepartment.deleteDepartment(departmentId);
+				if (!isDeleted) {
+					cout << "*** Not found department with id \"" << departmentId << "\"!" << endl;
+				}
+			} while (!isDeleted);
+			cout << "* Delete department with id \"" << departmentId << "\" successfully!" << endl;
 		}
 		else if (choice == "ep") {
 			listDepartment.exportListDepartment();
@@ -324,15 +365,15 @@ void departmentManagement() {
 void positionManagement() {
 	system("CLS");
 	int nChoice = 7;
-	string listChoice[]{ "is","ip","sl","ed","de","ep","ex" };
+	string listChoice[]{ "is","ip","sh","ud","de","ep","ex" };
 	string choice;
 	do {
 		cout << endl << setfill('=') << setw(16) << "=" << "Position Management" << setw(16) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press is to insert position--" << "|" << endl;
 		cout << setw(50) << left << "--Press ip to import list position from file--" << "|" << endl;
-		cout << setw(50) << left << "--Press sl to show list position--" << "|" << endl;
-		cout << setw(50) << left << "--Press ed to edit position--" << "|" << endl;
-		cout << setw(50) << left << "--Press de to delete position--" << "|" << endl;
+		cout << setw(50) << left << "--Press sh to show list position--" << "|" << endl;
+		cout << setw(50) << left << "--Press ud to update info position--" << "|" << endl;
+		cout << setw(50) << left << "--Press dl to delete position--" << "|" << endl;
 		cout << setw(50) << left << "--Press ep to export list position to file--" << "|" << endl;
 		cout << setw(50) << left << "--Press ex to exit position management--" << "|" << endl;
 		cout << setfill('=') << setw(51) << "=" << setfill(' ') << endl;
@@ -361,13 +402,23 @@ void positionManagement() {
 			} while (!isValidFile);
 			cout << "* Import data from file " << fileName << " into list position successfully!" << endl;
 		}
-		else if (choice == "sl") {
+		else if (choice == "sh") {
 			listPosition.showListPosition();
 		}
-		else if (choice == "ed") {
-			listPosition.editPosition();
+		else if (choice == "ud") {
+			string positionId;
+			cout << "- Enten Position's id to edit info: ";
+			bool isUpdated;
+			do {
+				getline(cin, positionId);
+				isUpdated = listPosition.updatePosition(positionId);
+				if (!isUpdated) {
+					cout << "* Not found position with id " << positionId << "!" << endl;
+				}
+			} while (!isUpdated);
+			cout << "* Update info position with id \"" << positionId << "\" successfully!" << endl;
 		}
-		else if (choice == "de") {
+		else if (choice == "dl") {
 			listPosition.deletePosition();
 		}
 		else if (choice == "ep") {
