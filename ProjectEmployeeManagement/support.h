@@ -38,6 +38,6 @@ bool isValidPositionId(string, Department);
 
 vector<string> splitStringToVector(string, string);
 
-string joinVectorToString(vector<string>, string);
+string joinVectorToString(vector<string>);
 
 #endif

@@ -10,9 +10,9 @@ string standardizeString(string str) {
 	{
 		str.erase(str.begin() + str.length() - 1);
 	}
-	for (size_t i = 0; i < str.length(); i++)
+	for (int i = 0; i < str.length(); ++i)
 	{
-		size_t j = i + 1;
+		int j = i + 1;
 		if (str[i] == ' ' && str[j] == ' ')
 		{
 			str.erase(str.begin() + i);
@@ -23,9 +23,9 @@ string standardizeString(string str) {
 	{
 		str[0] -= 32;
 	}
-	for (size_t i = 1; i < str.length(); i++)
+	for (int i = 1; i < str.length(); ++i)
 	{
-		size_t j = i - 1;
+		int j = i - 1;
 		if (str[j] == ' ' && str[i] >= 'a' && str[i] <= 'z')
 		{
 			str[i] -= 32;
@@ -38,7 +38,7 @@ string standardizeString(string str) {
 }
 // Hàm chuyển các ký tự trong chuỗi thành ký tự thường
 void toLowerCase(string& str) {
-	for (size_t i = 0; i < str.length(); i++) {
+	for (int i = 0; i < str.length(); ++i) {
 		if (str[i] >= 'A' && str[i] <= 'Z') {
 			str[i] += 32;
 		}
@@ -71,8 +71,8 @@ bool isValidEmail(string email)
 		cout << "*** First character must be alphanumeric! Re-enter: ";
 		return false;
 	}
-	size_t At = -1, Dot = -1;
-	for (size_t i = 0; i < email.length(); i++) {
+	int At = -1, Dot = -1;
+	for (int i = 0; i < email.length(); ++i) {
 		if (email[i] == '@') {
 			At = i;
 		}
@@ -101,8 +101,14 @@ bool isValidPhoneNumber(string phoneNumber) {
 		cout << "*** First char of phone number must be '0'! Re-enter: ";
 		return false;
 	}
-	if (phoneNumber.length() < 10) {
-		cout << "*** Length of phone number must greater than 10! Re-enter: ";
+	for (char& c : phoneNumber) {
+		if (!isDigit(c)) {
+			cout << "*** Contains non-numeric characters! Re-enter: ";
+			return false;
+		}
+	}
+	if (phoneNumber.length() < 10 || phoneNumber.length() > 11) {
+		cout << "*** Length of phone number must from 10 to 11! Re-enter: ";
 		return false;
 	}
 	return true;
@@ -110,12 +116,11 @@ bool isValidPhoneNumber(string phoneNumber) {
 
 // Hàm kiểm tra lựa chọn có hợp lệ hay không
 bool isValidChoice(string choice, string listChoice[], int nChoice) {
-	for (int i = 0; i < nChoice; i++) {
+	for (int i = 0; i < nChoice; ++i) {
 		if (choice == listChoice[i]) {
 			return true;
 		}
 	}
-	cout << "*** Value of choice is not valid! Re-enter: ";
 	return false;
 }
 
@@ -138,10 +143,12 @@ vector<string> splitStringToVector(string str, string token) {
 }
 
 // Hàm chuyển các phần từ trong vector thành chuỗi
-string joinVectorToString(vector<string> str, string token) {
+string joinVectorToString(vector<string> str) {
 	stringstream stream;
 	for (int i = 0; i < str.size(); ++i) {
-		if (i) stream << ' ';
+		if (i) {
+			stream << ' ';
+		}
 		stream << str[i];
 	}
 	return stream.str();
@@ -179,7 +186,7 @@ bool isExistedPositionId(string positionId, vector<Position> listPosition) {
 
 // Hàm kiểm tra 
 bool isValidPositionId(string positionId, Department department) {
-	for (int i = 0; i < department.getListPositionChild().size() - 1; ++i) {
+	for (int i = 0; i < department.getListPositionChild().size(); ++i) {
 		string position = department.getListPositionChild()[i];
 		if (position == positionId) {
 			return true;

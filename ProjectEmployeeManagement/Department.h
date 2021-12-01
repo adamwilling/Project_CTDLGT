@@ -32,7 +32,7 @@ public:
 	void importInfo(ifstream&);
 
 	// Khai báo phương thức xuát thông tin phòng ban ra tệp
-	void exporttInfo(ofstream&);
+	void exportInfo(ofstream&);
 
 	// Khai báo phương thức cập nhật thông tin nhât viên
 	void updateInfo();
@@ -42,5 +42,8 @@ public:
 
 	// Khai báo phương thức hiển thị thông tin phòng ban
 	void showInfo(ListPosition);
+
+	// Cài đặt phương thức loại chức vụ khỏi phòng ban khi chức vụ đó bị xóa
+	void deletePositionChild(string);
 };
 #endif

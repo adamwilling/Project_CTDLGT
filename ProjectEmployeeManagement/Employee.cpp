@@ -80,7 +80,14 @@ void Employee::inputInfo(vector<Employee> listEmployee, ListDepartment listDepar
 		checkValidPhoneNumber = isValidPhoneNumber(phoneNumber);
 	} while (!checkValidPhoneNumber);
 
-	cout << "+ Enter department id: ";
+	cout << "* List department: ";
+	for (int i = 0; i < listDepartment.getListDepartment().size(); ++i) {
+		if (i) {
+			cout << " - ";
+		}
+		cout << listDepartment.getListDepartment()[i].getDepartmentId() << ". " << listDepartment.getListDepartment()[i].getDepartmentName();
+	}
+	cout << "\n+ Enter department id: ";
 	bool checkDepartmentIdExisted;
 	do {
 		getline(cin, departmentId);
@@ -135,27 +142,6 @@ void Employee::importInfo(ifstream& input) {
 	input >> salary;
 
 	input.ignore();
-}
-
-// Cài đặt phương thức xuất thông tin nhân viên ra tệp
-void Employee::exporttInfo(ofstream& output) {
-	output << employeeId << ",";
-
-	output << fullName << ",";
-
-	output << gender << ",";
-
-	output << dateOfBirth.toString() << ",";
-
-	output << dateOfJoinAtCompany.toString() << ",";
-
-	output << email << ",";
-
-	output << phoneNumber << ",";
-
-	output << departmentId << ",";
-
-	output << positionId << endl;
 }
 
 // Cài đặt phương thức nhập vào thông tin cho nhân viên
@@ -220,10 +206,7 @@ void Employee::updateInfo(vector<Employee> listEmployee, ListDepartment listDepa
 
 // Cài đặt phương thức hiển thị thông tin nhân viên
 void Employee::showInfo(int key, ListDepartment listDepartment, ListPosition listPosition) {
-
-	string departmentName("");
-	departmentName = listDepartment.searchDepartmentById(departmentId).getDepartmentName();
-	string positionName("");
-	positionName = listPosition.searchPositionById(positionId).getPositionName();
-	cout << setw(5) << key << setw(12) << employeeId << setw(30) << fullName << setw(10) << gender << setw(15) << dateOfBirth.toString() << setw(15) << dateOfJoinAtCompany.toString() << setw(40) << email << setw(15) << phoneNumber << setw(40) << departmentName << setw(40) << positionName << setw(15) << salary << endl;
+	/*string departmentName(listDepartment.searchDepartmentById(departmentId).getDepartmentName());
+	string positionName(listPosition.searchPositionById(positionId).getPositionName());*/
+	cout << setw(5) << key << setw(12) << employeeId << setw(30) << fullName << setw(10) << gender << setw(15) << dateOfBirth.toString() << setw(15) << dateOfJoinAtCompany.toString() << setw(40) << email << setw(15) << phoneNumber << setw(30) << listDepartment.searchDepartmentById(departmentId).getDepartmentName() << setw(40) << listPosition.searchPositionById(positionId).getPositionName() << setw(15) << salary << endl;
 }

@@ -8,17 +8,17 @@ int partitionById(vector<Employee>& values, int left, int right) {
     Employee temp;
     while (i <= j) {
         while (values[i].getEmployeeId() < pivotValue) {
-            i++;
+            ++i;
         }
         while (values[j].getEmployeeId() > pivotValue) {
-            j--;
+            --j;
         }
         if (i <= j) {
             temp = values[i];
             values[i] = values[j];
             values[j] = temp;
-            i++;
-            j--;
+            ++i;
+            --j;
         }
     }
     return i;
@@ -40,17 +40,17 @@ int partitionByLastName(vector<Employee>& values, int left, int right) {
     Employee temp;
     while (i <= j) {
         while (values[i].getLastName() < pivotValue) {
-            i++;
+            ++i;
         }
         while (values[j].getLastName() > pivotValue) {
-            j--;
+            --j;
         }
         if (i <= j) {
             temp = values[i];
             values[i] = values[j];
             values[j] = temp;
-            i++;
-            j--;
+            ++i;
+            --j;
         }
     }
     return i;
@@ -84,17 +84,17 @@ int partitionByDateOfBirth(vector<Employee>& values, int left, int right) {
     Employee temp;
     while (i <= j) {
         while (compareDate(values[i].getDateOfBirth(), pivotValue)) {
-            i++;
+            ++i;
         }
         while (compareDate(pivotValue, values[j].getDateOfBirth())) {
-            j--;
+            --j;
         }
         if (i <= j) {
             temp = values[i];
             values[i] = values[j];
             values[j] = temp;
-            i++;
-            j--;
+            ++i;
+            --j;
         }
     }
     return i;
@@ -116,17 +116,17 @@ int partitionByDateOfJoinAtCompany(vector<Employee>& values, int left, int right
     Employee temp;
     while (i <= j) {
         while (compareDate(values[i].getDateOfJoinAtCompany(), pivotValue)) {
-            i++;
+            ++i;
         }
         while (compareDate(pivotValue, values[j].getDateOfJoinAtCompany())) {
-            j--;
+            --j;
         }
         if (i <= j) {
             temp = values[i];
             values[i] = values[j];
             values[j] = temp;
-            i++;
-            j--;
+            ++i;
+            --j;
         }
     }
     return i;
@@ -148,17 +148,17 @@ int partitionBySalary(vector<Employee>& values, int left, int right) {
     Employee temp;
     while (i <= j) {
         while (values[i].getSalary() < pivotValue) {
-            i++;
+            ++i;
         }
         while (values[j].getSalary() > pivotValue) {
-            j--;
+            --j;
         }
         if (i <= j) {
             temp = values[i];
             values[i] = values[j];
             values[j] = temp;
-            i++;
-            j--;
+            ++i;
+            --j;
         }
     }
     return i;

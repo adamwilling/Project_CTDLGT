@@ -33,7 +33,7 @@ int main() {
 	string choice;
 	do {
 		system("CLS");
-		cout << endl << setfill('=') << setw(22) << "=" << "Company" << setw(22) << "=" << setfill(' ') << endl;
+		cout << setfill('=') << setw(22) << "=" << "Company" << setw(22) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press me to manage employees--" << "|" << endl;
 		cout << setw(50) << left << "--Press md to manage departments--" << "|" << endl;
 		cout << setw(50) << left << "--Press mp to manage positions--" << "|" << endl;
@@ -45,6 +45,9 @@ int main() {
 			getline(cin, choice);
 			toLowerCase(choice);
 			checkChoice = isValidChoice(choice, listChoice, nChoice);
+			if (!checkChoice) {
+				cout << "*** Value of choice is not valid! Re-enter: ";
+			}
 		} while (!checkChoice);
 		if (choice == "me") {
 			employeeManagement();
@@ -56,6 +59,7 @@ int main() {
 			positionManagement();
 		}
 		else if (choice == "ex") {
+			cout << "Exit program successfully...";
 			break;
 		}
 	} while (1);
@@ -67,17 +71,17 @@ int main() {
 void employeeManagement() {
 	system("CLS");
 	int nChoice = 9;
-	string listChoice[]{ "is","ip","sh","ud","de","fe","se","ep","ex" };
+	string listChoice[]{ "is","ip","sh","ud","dl","ft","st","ep","ex" };
 	string choice;
 	do {
-		cout << endl << setfill('=') << setw(16) << "=" << "Employee Management" << setw(16) << "=" << setfill(' ') << endl;
+		cout << setfill('=') << setw(16) << "=" << "Employee Management" << setw(16) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press is to insert employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press ip to import list employee from file--" << "|" << endl;
 		cout << setw(50) << left << "--Press sh to show list employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press ud to update info employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press de to delete employee--" << "|" << endl;
-		cout << setw(50) << left << "--Press fe to filter employee--" << "|" << endl;
-		cout << setw(50) << left << "--Press se to sort employee--" << "|" << endl;
+		cout << setw(50) << left << "--Press ft to filter employee--" << "|" << endl;
+		cout << setw(50) << left << "--Press st to sort employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press ep to export list employee to file--" << "|" << endl;
 		cout << setw(50) << left << "--Press ex to exit employee management--" << "|" << endl;
 		cout << setfill('=') << setw(51) << "=" << setfill(' ') << endl;
@@ -87,6 +91,9 @@ void employeeManagement() {
 			getline(cin, choice);
 			toLowerCase(choice);
 			checkChoice = isValidChoice(choice, listChoice, nChoice);
+			if (!checkChoice) {
+				cout << "*** Value of choice is not valid! Re-enter: ";
+			}
 		} while (!checkChoice);
 
 		// Do string không dùng được switch case nên phải dùng if/else if/else
@@ -101,10 +108,10 @@ void employeeManagement() {
 				getline(cin, fileName);
 				isValidFile = listEmployee.importListEmployee(fileName);
 				if (!isValidFile) {
-					cout << "* Not found file \"" << fileName << "\". Re-enter: ";
+					cout << "* Not found file \"" << fileName << "\"! Re-enter: ";
 				}
 			} while (!isValidFile);
-			cout << "* Import data from file " << fileName << " into list department successfully!" << endl;
+			cout << "* Import data from file \"" << fileName << "\" into list department successfully!" << endl;
 		}
 		else if (choice == "sh") {
 			listEmployee.showListEmployee(listDepartment, listPosition);
@@ -112,15 +119,15 @@ void employeeManagement() {
 		else if (choice == "ud") {
 			string employeeId;
 			cout << "- Enter employee id to update info: ";
-			getline(cin, employeeId);
 			bool isUpdated;
 			do {
+				getline(cin, employeeId);
 				isUpdated = listEmployee.updateEmployee(employeeId, listDepartment, listPosition);
 				if (!isUpdated) {
-					cout << "* Not found employee with id " << employeeId << "!" << endl;
+					cout << "* Not found employee has id \"" << employeeId << "\"! Re-enter: ";
 				}
 			} while (!isUpdated);
-			cout << "* Update info employee with id \"" << employeeId << "\" successfully!" << endl;
+			cout << "* Update info employee has id \"" << employeeId << "\" successfully!" << endl;
 		}
 		else if (choice == "de") {
 			string employeeId;
@@ -130,16 +137,16 @@ void employeeManagement() {
 				getline(cin, employeeId);
 				isDeleted = listEmployee.deleteEmployee(employeeId);
 				if (!isDeleted) {
-					cout << "*** Not found employee with " << employeeId << "!" << endl;
+					cout << "*** Not found employee has id \"" << employeeId << "\"! Re-enter: ";
 				}
 			} while (!isDeleted);
-			cout << "* Delete employee with id \"" << employeeId << "\" successfully!" << endl;
+			cout << "* Delete employee has id \"" << employeeId << "\" successfully!" << endl;
 			
 		}
-		else if (choice == "fe") {
+		else if (choice == "ft") {
 			filterManagement();
 		}
-		else if (choice == "se") {
+		else if (choice == "st") {
 			sortManagement();
 		}
 		else if (choice == "ep") {
@@ -159,7 +166,7 @@ void filterManagement() {
 	string listChoice[]{ "fn","fg","fd","fp","ex" };
 	string choice;
 	do {
-		cout << endl << setfill('=') << setw(17) << "=" << "Filter Management" << setw(17) << "=" << setfill(' ') << endl;
+		cout << setfill('=') << setw(17) << "=" << "Filter Management" << setw(17) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press fn to filter by name--" << "|" << endl;
 		cout << setw(50) << left << "--Press fg to filter by gender--" << "|" << endl;
 		cout << setw(50) << left << "--Press fd to filter by department--" << "|" << endl;
@@ -172,6 +179,9 @@ void filterManagement() {
 			getline(cin, choice);
 			toLowerCase(choice);
 			checkChoice = isValidChoice(choice, listChoice, nChoice);
+			if (!checkChoice) {
+				cout << "*** Value of choice is not valid! Re-enter: ";
+			}
 		} while (!checkChoice); // Kiểm tra lựa chọn nhập vào có hợp lệ hay không
 
 		// Do string không dùng được switch case nên phải dùng if/else if/else
@@ -202,8 +212,8 @@ void filterManagement() {
 		else if (choice == "ex") {
 			break;
 		}
-		if (result.getListEmployee().size() <= 0) {
-			cout << "*** Failed to filter the required employee data!" << endl;
+		if (result.getListEmployee().size() == 0) {
+			cout << "* Filter results are empty!" << endl;
 			return;
 		}
 		result.showListEmployee(listDepartment, listPosition);
@@ -211,11 +221,11 @@ void filterManagement() {
 		cout << "- Export result filter? (Y/N): ";
 		do {
 			getline(cin, isExport);
-			if (isExport != "Y" && isExport != "N") {
+			if (isExport != "Y" && isExport != "N" && isExport != "y" && isExport != "n") {
 				cout << "*** Please enter Y or N: ";
 			}
-		} while (isExport != "Y" && isExport != "N");
-		if (isExport == "N") {
+		} while (isExport != "Y" && isExport != "N" && isExport != "y" && isExport != "n");
+		if (isExport == "N" || isExport == "n") {
 			break;
 		}
 		result.exportListEmployee();
@@ -230,12 +240,12 @@ void sortManagement() {
 	string listChoice[]{ "si","sn","sd","sj","ss","ex" };
 	string choice;
 	do {
-		cout << endl << setfill('=') << setw(17) << "=" << "Filter Management" << setw(17) << "=" << setfill(' ') << endl;
+		cout << setfill('=') << setw(17) << "=" << "Filter Management" << setw(17) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press si to sort by id--" << "|" << endl;
 		cout << setw(50) << left << "--Press sn to sort by name--" << "|" << endl;
 		cout << setw(50) << left << "--Press sd to sort by date of birth--" << "|" << endl;
 		cout << setw(50) << left << "--Press sj to sort by date of join at company--" << "|" << endl;
-		cout << setw(50) << left << "--Press sj to sort by salary--" << "|" << endl;
+		cout << setw(50) << left << "--Press ss to sort by salary--" << "|" << endl;
 		cout << setw(50) << left << "--Press ex to exit sort management--" << "|" << endl;
 		cout << setfill('=') << setw(51) << "=" << setfill(' ') << endl;
 		cout << "- Enter choice: ";
@@ -244,6 +254,9 @@ void sortManagement() {
 			getline(cin, choice);
 			toLowerCase(choice);
 			checkChoice = isValidChoice(choice, listChoice, nChoice);
+			if (!checkChoice) {
+				cout << "*** Value of choice is not valid! Re-enter: ";
+			}
 		} while (!checkChoice); // Kiểm tra lựa chọn nhập vào có hợp lệ hay không
 
 		// Do string không dùng được switch case nên phải dùng if/else if/else
@@ -270,11 +283,11 @@ void sortManagement() {
 		cout << "- Export result sort? (Y/N): ";
 		do {
 			getline(cin, isExport);
-			if (isExport != "Y" && isExport != "N") {
+			if (isExport != "Y" && isExport != "N" && isExport != "y" && isExport != "n") {
 				cout << "*** Please enter Y or N: ";
 			}
-		} while (isExport != "Y" && isExport != "N");
-		if (isExport == "N") {
+		} while (isExport != "Y" && isExport != "N" && isExport != "y" && isExport != "n");
+		if (isExport == "N" || isExport == "n") {
 			break;
 		}
 		listEmployee.exportListEmployee();
@@ -290,7 +303,7 @@ void departmentManagement() {
 	string listChoice[]{ "is","ip","sh","ud","dl","ep","ex" };
 	string choice;
 	do {
-		cout << endl << setfill('=') << setw(15) << "=" << "Department Management" << setw(15) << "=" << setfill(' ') << endl;
+		cout << setfill('=') << setw(15) << "=" << "Department Management" << setw(15) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press is to insert department--" << "|" << endl;
 		cout << setw(50) << left << "--Press ip to import department from file--" << "|" << endl;
 		cout << setw(50) << left << "--Press sh to show list department--" << "|" << endl;
@@ -305,6 +318,9 @@ void departmentManagement() {
 			getline(cin, choice);
 			toLowerCase(choice);
 			checkChoice = isValidChoice(choice, listChoice, nChoice);
+			if (!checkChoice) {
+				cout << "*** Value of choice is not valid! Re-enter: ";
+			}
 		} while (!checkChoice);
 
 		// Do string không dùng được switch case nên phải dùng if/else if/else
@@ -319,7 +335,7 @@ void departmentManagement() {
 				getline(cin, fileName);
 				isValidFile = listDepartment.importListDepartment(fileName);
 				if (!isValidFile) {
-					cout << "* Not found file \"" << fileName << "\". Re-enter: ";
+					cout << "*** Not found file \"" << fileName << "\"! Re-enter: ";
 				}
 			} while (!isValidFile);
 			cout << "* Import data from file \"" << fileName << "\" into list department successfully!" << endl;
@@ -329,29 +345,30 @@ void departmentManagement() {
 		}
 		else if (choice == "ud") {
 			string departmentId;
-			cout << "- Enter department id: ";
+			cout << "- Enter department id to update info: ";
 			bool isUpdated;
 			do {
 				getline(cin, departmentId);
 				isUpdated = listDepartment.updateDepartment(departmentId);
 				if (!isUpdated) {
-					cout << "*** Not found department with id \"" << departmentId << "\"!" << endl;
+					cout << "*** Not found department has id \"" << departmentId << "\"! Re-enter: ";
 				}
 			} while (!isUpdated);
-			cout << "* Update info department with id \"" << departmentId << "\" successfully!" << endl;
+			cout << "* Update info department has id \"" << departmentId << "\" successfully!" << endl;
 		}
 		else if (choice == "dl") {
 			string departmentId;
-			cout << "- Enter department id: ";
+			cout << "- Enter department id to delete: ";
 			bool isDeleted;
 			do {
 				getline(cin, departmentId);
 				isDeleted = listDepartment.deleteDepartment(departmentId);
 				if (!isDeleted) {
-					cout << "*** Not found department with id \"" << departmentId << "\"!" << endl;
+					cout << "*** Not found department has id \"" << departmentId << "\"! Re-enter: ";
 				}
 			} while (!isDeleted);
-			cout << "* Delete department with id \"" << departmentId << "\" successfully!" << endl;
+			listEmployee.deleteEmployeeByDepartmentId(departmentId);		// Thực hiện xóa tất cả nhân viên thuộc phòng ban này
+			cout << "* Delete department has id \"" << departmentId << "\" successfully!" << endl;
 		}
 		else if (choice == "ep") {
 			listDepartment.exportListDepartment();
@@ -365,7 +382,7 @@ void departmentManagement() {
 void positionManagement() {
 	system("CLS");
 	int nChoice = 7;
-	string listChoice[]{ "is","ip","sh","ud","de","ep","ex" };
+	string listChoice[]{ "is","ip","sh","ud","dl","ep","ex" };
 	string choice;
 	do {
 		cout << endl << setfill('=') << setw(16) << "=" << "Position Management" << setw(16) << "=" << setfill(' ') << endl;
@@ -383,6 +400,9 @@ void positionManagement() {
 			getline(cin, choice);
 			toLowerCase(choice);
 			checkChoice = isValidChoice(choice, listChoice, nChoice);
+			if (!checkChoice) {
+				cout << "*** Value of choice is not valid! Re-enter: ";
+			}
 		} while (!checkChoice);
 
 		// Do string không dùng được switch case nên phải dùng if/else if/else
@@ -397,29 +417,41 @@ void positionManagement() {
 				getline(cin, fileName);
 				isValidFile = listPosition.importListPosition(fileName);
 				if (!isValidFile) {
-					cout << "* Not found file \"" << fileName << "\". Re-enter: ";
+					cout << "*** Not found file \"" << fileName << "\"! Re-enter: ";
 				}
 			} while (!isValidFile);
-			cout << "* Import data from file " << fileName << " into list position successfully!" << endl;
+			cout << "* Import data from file \"" << fileName << "\" into list position successfully!" << endl;
 		}
 		else if (choice == "sh") {
 			listPosition.showListPosition();
 		}
 		else if (choice == "ud") {
 			string positionId;
-			cout << "- Enten Position's id to edit info: ";
+			cout << "- Enter position id to update info: ";
 			bool isUpdated;
 			do {
 				getline(cin, positionId);
 				isUpdated = listPosition.updatePosition(positionId);
 				if (!isUpdated) {
-					cout << "* Not found position with id " << positionId << "!" << endl;
+					cout << "*** Not found position has id \"" << positionId << "\"! Re-enter: ";
 				}
 			} while (!isUpdated);
-			cout << "* Update info position with id \"" << positionId << "\" successfully!" << endl;
+			cout << "* Update info position has id \"" << positionId << "\" successfully!" << endl;
 		}
 		else if (choice == "dl") {
-			listPosition.deletePosition();
+			string positionId;
+			cout << "- Enter position id to delete: ";
+			bool isDeleted;
+			do {
+				getline(cin, positionId);
+				isDeleted = listPosition.deletePosition(positionId, listDepartment);
+				if (!isDeleted) {
+					cout << "*** Not found position has id \"" << positionId << "\"! Re-enter: ";
+				}
+			} while (!isDeleted);
+			listDepartment.deletePositionInDepartment(positionId);		// Thực hiện xóa chức vụ đó khỏi tất cả những phòng ban chứa nó
+			listEmployee.deleteEmployeeByPositionId(positionId);		// Thực hiện xóa tất cả nhân viên giữ chức vụ này
+			cout << "* Delete position has id \"" << positionId << "\" successfully!" << endl;
 		}
 		else if (choice == "ep") {
 			listPosition.exportListPosition();

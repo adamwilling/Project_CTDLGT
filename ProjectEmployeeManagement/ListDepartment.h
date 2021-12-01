@@ -38,5 +38,8 @@ public:
 
 	// Khai báo phương thức tìm kiếm phòng ban bằng mã phòng ban
 	Department searchDepartmentById(string);
+
+	// Cài đặt phương thức loại một chức vụ khỏi phòng ban khi chức vụ đó bị xóa
+	void deletePositionInDepartment(string);
 };
 #endif

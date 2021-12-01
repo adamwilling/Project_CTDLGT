@@ -35,10 +35,15 @@ void ListDepartment::exportListDepartment() {
 	cout << "- Enter file name: ";
 	getline(cin, fileName);
 	ofstream output(fileName);
-	int sizeList = listDepartment.size();
-	if (sizeList > 0) {
-		for (int i = 0; i < sizeList; ++i) {
-			listDepartment[i].exporttInfo(output);
+	if (listDepartment.size() > 0) {
+		for (int i = 0; i < listDepartment.size(); ++i) {
+			if (i) {
+				output << endl;
+			}
+			output << listDepartment[i].getDepartmentId() << ",";
+			output << listDepartment[i].getDepartmentName() << ",";
+			string strListPosition = joinVectorToString(listDepartment[i].getListPositionChild());
+			output << strListPosition;
 		}
 	}
 	else {
@@ -49,11 +54,10 @@ void ListDepartment::exportListDepartment() {
 
 // Cài đặt phương thức hiển thị danh sách phòng ban
 void ListDepartment::showListDepartment(ListPosition listPosition) {
-	int sizeList = listDepartment.size();
-	if (sizeList > 0) {
-		cout << "*** List Department: " << sizeList << " department" << endl;
-		for (int i = 0; i < sizeList; ++i) {
-			listDepartment[i].showInfo(listPosition);
+	if (listDepartment.size() > 0) {
+		cout << "*** List Department: " << listDepartment.size() << " department" << endl;
+		for (auto& department : listDepartment) {
+			department.showInfo(listPosition);
 		}
 	}
 	else {
@@ -63,10 +67,9 @@ void ListDepartment::showListDepartment(ListPosition listPosition) {
 
 // Cài đặt phương thức sửa thông tin phòng ban
 bool ListDepartment::updateDepartment(string departmentId) {
-	int sizeList = listDepartment.size();
-	for (int i = 0; i < sizeList; ++i) {
-		if (listDepartment[i].getDepartmentId() == departmentId) {
-			listDepartment[i].updateInfo();
+	for (auto& department : listDepartment) {
+		if (department.getDepartmentId() == departmentId) {
+			department.updateInfo();
 			return true;
 		}
 	}
@@ -75,8 +78,7 @@ bool ListDepartment::updateDepartment(string departmentId) {
 
 // Cài đặt phương thức xóa phòng ban
 bool ListDepartment::deleteDepartment(string departmentId) {
-	int sizeList = listDepartment.size();
-	for (int i = 0; i < sizeList; ++i) {
+	for (int i = 0; i < listDepartment.size(); ++i) {
 		if (listDepartment[i].getDepartmentId() == departmentId) {
 			listDepartment.erase(listDepartment.begin() + i);
 			return true;
@@ -88,10 +90,17 @@ bool ListDepartment::deleteDepartment(string departmentId) {
 // Cài đặt phương thức tìm kiếm phòng ban bằng mã phòng ban
 Department ListDepartment::searchDepartmentById(string departmentId) {
 	int sizeList = listDepartment.size();
-	for (int i = 0; i < sizeList; ++i) {
-		if (listDepartment[i].getDepartmentId() == departmentId) {
-			return listDepartment[i];
+	for (auto& department : listDepartment) {
+		if (department.getDepartmentId() == departmentId) {
+			return department;
 		}
 	}
 	return Department();
+}
+
+// Cài đặt phương thức loại một chức vụ khỏi phòng ban khi chức vụ đó bị xóa
+void ListDepartment::deletePositionInDepartment(string positionId) {
+	for (auto& department : listDepartment) {
+		department.deletePositionChild(positionId);
+	}
 }

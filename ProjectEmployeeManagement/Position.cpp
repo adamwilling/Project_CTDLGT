@@ -30,13 +30,6 @@ void Position::importInfo(ifstream& input) {
 	getline(input, positionName);
 }
 
-// Cài đặt phương thức xuất thông tin phòng ban ra tệp
-void Position::exporttInfo(ofstream& output) {
-	output << positionId << ",";
-
-	output << positionName << endl;
-}
-
 // Cài đặt phương thức nhập vào thông tin cho phòng ban
 void Position::updateInfo() {
 	cout << "+ Enter new name: ";

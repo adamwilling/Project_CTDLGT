@@ -7,8 +7,10 @@
 
 #include "library.h"
 #include "Position.h"
+#include "ListDepartment.h"
 
 class Position;
+class ListDepartment;
 
 class ListPosition
 {
@@ -33,7 +35,7 @@ public:
 	bool updatePosition(string);
 
 	// Khai báo phương thức xóa chức vụ
-	void deletePosition();
+	bool deletePosition(string, ListDepartment);
 
 	// Khai báo phương thức tìm kiếm chức vụ bằng mã chức vụ
 	Position searchPositionById(string);

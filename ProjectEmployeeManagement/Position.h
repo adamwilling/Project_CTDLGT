@@ -26,9 +26,6 @@ public:
 	void inputInfo(vector<Position>);
 	void importInfo(ifstream&);
 
-	// Khai báo phương thức xuát thông tin phòng ban ra tệp
-	void exporttInfo(ofstream&);
-
 	// Khai báo phương thức cập nhật thông tin nhât viên
 	void updateInfo();
 

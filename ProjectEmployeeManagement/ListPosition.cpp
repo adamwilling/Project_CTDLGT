@@ -35,19 +35,27 @@ void ListPosition::exportListPosition() {
 	cout << "- Enter file name: ";
 	getline(cin, fileName);
 	ofstream output(fileName);
-	for (auto Position : listPosition) {
-		Position.exporttInfo(output);
+	if (listPosition.size() > 0) {
+		for (int i = 0; i < listPosition.size(); ++i) {
+			if (i) {
+				output << endl;
+			}
+			output << listPosition[i].getPositionId() << ",";
+			output << listPosition[i].getPositionName();
+		}
 	}
-	cout << "* Export list position to file " << fileName << " successfully!" << endl;
+	else {
+		output << "* List position is empty!" << endl;
+	}
+	cout << "* Export list position to file \"" << fileName << "\" successfully!" << endl;
 }
 
 // Cài đặt phương thức hiển thị danh sách phòng ban
 void ListPosition::showListPosition() {
-	int sizeList = listPosition.size();
-	if (sizeList > 0) {
-		cout << "*** List position: " << sizeList << " Position" << endl;
-		for (int i = 0; i < sizeList; i++) {
-			listPosition[i].showInfo();
+	if (listPosition.size() > 0) {
+		cout << "*** List position: " << listPosition.size() << " (position)" << endl;
+		for (auto& position : listPosition) {
+			position.showInfo();
 		}
 	}
 	else {
@@ -57,35 +65,29 @@ void ListPosition::showListPosition() {
 
 // Cài đặt phương thức sửa thông tin nhân viên
 bool ListPosition::updatePosition(string positionId) {
-	int sizeList = listPosition.size();
-	for (int i = 0; i < sizeList; ++i) {
-		if (listPosition[i].getPositionId() == positionId) {
-			listPosition[i].updateInfo();
+	for (auto& position : listPosition) {
+		if (position.getPositionId() == positionId) {
+			position.updateInfo();
 			return true;
 		}
 	}
 	return false;
 }
 
-// Cài đặt phương thức xóa nhân viên
-void ListPosition::deletePosition() {
-	string id;
-	cout << "- Enten position's id to delete: ";
-	getline(cin, id);
-	int sizeList = listPosition.size();
-	for (int i = 0; i < sizeList; i++) {
-		if (listPosition[i].getPositionId() == id) {
+// Cài đặt phương thức xóa chức vụ
+bool ListPosition::deletePosition(string positionId, ListDepartment listDepartment) {
+	for (int i = 0; i < listPosition.size(); ++i) {
+		if (listPosition[i].getPositionId() == positionId) {
 			listPosition.erase(listPosition.begin() + i);
-			cout << "* Delete position with id " << id << " successfully!" << endl;
-			return;
+			return true;
 		}
 	}
-	cout << "* Not found position with " << id << "!" << endl;
+	return false;
 }
 
 // Cài đặt phương thức tìm kiếm chức vụ bằng mã chức vụ
 Position ListPosition::searchPositionById(string positionId) {
-	for (Position position : listPosition) {
+	for (auto& position : listPosition) {
 		if (position.getPositionId() == positionId) {
 			return position;
 		}

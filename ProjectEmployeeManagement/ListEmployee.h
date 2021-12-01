@@ -10,8 +10,6 @@
 #include "ListDepartment.h"
 #include "ListPosition.h"
 
-class Employee;
-
 class ListEmployee
 {
 private:
@@ -36,6 +34,12 @@ public:
 
 	// Khai báo phương thức xóa nhân viên
 	bool deleteEmployee(string);
+
+	// Cài đặt phương thức xóa nhân viên theo phòng ban
+	void deleteEmployeeByDepartmentId(string);
+
+	// Cài đặt phương thức xóa nhân viên theo chức vụ
+	void deleteEmployeeByPositionId(string);
 
 	// Khai báo phương thức lọc nhân viên
 	ListEmployee filterEmployee(int, string);

@@ -43,9 +43,6 @@ public:
 	void inputInfo(vector<Employee>, ListDepartment, ListPosition);
 	void importInfo(ifstream&);
 
-	// Khai báo phương thức xuát thông tin nhân viên ra tệp
-	void exporttInfo(ofstream&);
-
 	// Khai báo phương thức cập nhật thông tin nhât viên
 	void updateInfo(vector<Employee>, ListDepartment, ListPosition);
 

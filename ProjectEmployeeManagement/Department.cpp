@@ -48,13 +48,14 @@ void Department::importInfo(ifstream& input) {
 }
 
 // Cài đặt phương thức xuất thông tin phòng ban ra tệp
-void Department::exporttInfo(ofstream& output) {
+void Department::exportInfo(ofstream& output) {
+	output << endl;
 	output << departmentId << ",";
 
 	output << departmentName << ",";
 
-	string strListPosition = joinVectorToString(listPositionChild, strListPosition);
-	output << strListPosition << endl;
+	string strListPosition = joinVectorToString(listPositionChild);
+	output << strListPosition;
 }
 
 // Cài đặt phương thức nhập vào thông tin cho phòng ban
@@ -90,4 +91,14 @@ void Department::showInfo(ListPosition listPositionChild) {
 	cout << "- Department id: " << departmentId << endl;
 	cout << "- Department name: " << departmentName << endl;
 	cout << "- List position managed by this department: "; showListPositionChild(listPositionChild);
+}
+
+// Cài đặt phương thức loại chức vụ khỏi phòng ban khi chức vụ đó bị xóa
+void Department::deletePositionChild(string positionId) {
+	int sizeList = listPositionChild.size();
+	for (int i = 0; i < sizeList; ++i) {
+		if (listPositionChild[i] == positionId) {
+			listPositionChild.erase(listPositionChild.begin() + i);
+		}
+	}
 }
