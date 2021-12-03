@@ -53,10 +53,13 @@ void ListPosition::exportListPosition() {
 // Cài đặt phương thức hiển thị danh sách phòng ban
 void ListPosition::showListPosition() {
 	if (listPosition.size() > 0) {
-		cout << "*** List position: " << listPosition.size() << " (position)" << endl;
+		cout << "\t\t\t" << setfill('-') << setw(97) << "-" << setfill(' ') << endl;
+		cout << "\t\t\t||" << setw(15) << "\tId" << "||" << setw(64) << "\tName" << "||" << endl;
 		for (auto& position : listPosition) {
+			cout << "\t\t\t" << setfill('-') << setw(97) << "-" << setfill(' ') << endl;
 			position.showInfo();
 		}
+		cout << "\t\t\t" << setfill('-') << setw(97) << "-" << setfill(' ') << endl;
 	}
 	else {
 		cout << "* List position is empty!" << endl;

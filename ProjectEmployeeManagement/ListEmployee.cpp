@@ -77,11 +77,22 @@ void ListEmployee::showListEmployee(ListDepartment listDepartment, ListPosition 
 	}
 }
 
-// Cài đặt phương thức sửa thông tin nhân viên
+// Cài đặt phương thức cập nhật thông tin nhân viên
 bool ListEmployee::updateEmployee(string employeeId, ListDepartment listDepartment, ListPosition listPosition) {
 	for (auto& employee : listEmployee) {
 		if (employee.getEmployeeId() == employeeId) {
 			employee.updateInfo(listEmployee, listDepartment, listPosition);
+			return true;
+		}
+	}
+	return false;
+}
+
+// Cài đặt phương thức cập nhật lương của nhân viên
+bool ListEmployee::updateSalary(string employeeId) {
+	for (auto& employee : listEmployee) {
+		if (employee.getEmployeeId() == employeeId) {
+			employee.updateSalary();
 			return true;
 		}
 	}
@@ -135,7 +146,7 @@ ListEmployee ListEmployee::filterEmployee(int choice, string value) {
 	}
 	case 2: {
 		for (auto& employee : listEmployee) {
-			if (employee.getGender().find(value) != string::npos) {
+			if (employee.getGender() == standardizeString(value)) {
 				result.insertEmployee(employee);
 			}
 		}
@@ -143,7 +154,7 @@ ListEmployee ListEmployee::filterEmployee(int choice, string value) {
 	}
 	case 3: {
 		for (auto& employee : listEmployee) {
-			if (employee.getDepartmentId().find(value) != string::npos) {
+			if (employee.getDepartmentId() == value) {
 				result.insertEmployee(employee);
 			}
 		}
@@ -151,7 +162,7 @@ ListEmployee ListEmployee::filterEmployee(int choice, string value) {
 	}
 	case 4: {
 		for (auto& employee : listEmployee) {
-			if (employee.getPositionId().find(value) != string::npos) {
+			if (employee.getPositionId() == value) {
 				result.insertEmployee(employee);
 			}
 		}

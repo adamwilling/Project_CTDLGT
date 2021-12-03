@@ -46,10 +46,11 @@ public:
 	// Khai báo phương thức cập nhật thông tin nhât viên
 	void updateInfo(vector<Employee>, ListDepartment, ListPosition);
 
+	// Khai báo phương thức cập nhật lương của nhân viên
+	void updateSalary();
+
 	// Khai báo phương thức hiển thị thông tin nhân viên
 	void showInfo(int, ListDepartment, ListPosition);
-
-	// Hàm kiểm tra id đã tồn tại hay chưa
-	bool isExistId(string id, vector<Employee>);
 };
+
 #endif

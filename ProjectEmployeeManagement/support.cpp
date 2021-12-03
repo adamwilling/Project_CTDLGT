@@ -36,6 +36,28 @@ string standardizeString(string str) {
 	}
 	return str;
 }
+
+// Hàm xóa khoảng trắng thừa trong chuỗi
+void removeSpace(string& str) {
+	while (str[0] == ' ')
+	{
+		str.erase(str.begin());
+	}
+	while (str[str.length() - 1] == ' ')
+	{
+		str.erase(str.begin() + str.length() - 1);
+	}
+	for (int i = 0; i < str.length(); ++i)
+	{
+		int j = i + 1;
+		if (str[i] == ' ' && str[j] == ' ')
+		{
+			str.erase(str.begin() + i);
+			i--;
+		}
+	}
+}
+
 // Hàm chuyển các ký tự trong chuỗi thành ký tự thường
 void toLowerCase(string& str) {
 	for (int i = 0; i < str.length(); ++i) {

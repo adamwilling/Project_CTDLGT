@@ -28,14 +28,14 @@ public:
 	vector<string> getListPositionChild();
 
 	// Khai báo phương thức nhập vào thông tin phòng ban
-	void inputInfo(vector<Department>);
+	void inputInfo(vector<Department>, ListPosition);
 	void importInfo(ifstream&);
 
 	// Khai báo phương thức xuát thông tin phòng ban ra tệp
 	void exportInfo(ofstream&);
 
 	// Khai báo phương thức cập nhật thông tin nhât viên
-	void updateInfo();
+	void updateInfo(ListPosition);
 
 	// Khai báo phương thức hiển thị những chức vụ nằm bên trong phòng ban
 	void showListPositionChild(ListPosition);

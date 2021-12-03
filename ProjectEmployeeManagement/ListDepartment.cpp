@@ -6,9 +6,9 @@ vector<Department> ListDepartment::getListDepartment() {
 }
 
 // Cài đặt phương thức thêm phòng ban từ bàn phím
-void ListDepartment::insertDepartment() {
+void ListDepartment::insertDepartment(ListPosition listPosition) {
 	Department newDepartment;
-	newDepartment.inputInfo(listDepartment);
+	newDepartment.inputInfo(listDepartment, listPosition);
 	listDepartment.push_back(newDepartment);
 }
 void ListDepartment::insertDepartment(Department newDepartment) {
@@ -66,10 +66,10 @@ void ListDepartment::showListDepartment(ListPosition listPosition) {
 }
 
 // Cài đặt phương thức sửa thông tin phòng ban
-bool ListDepartment::updateDepartment(string departmentId) {
+bool ListDepartment::updateDepartment(string departmentId, ListPosition listPosition) {
 	for (auto& department : listDepartment) {
 		if (department.getDepartmentId() == departmentId) {
-			department.updateInfo();
+			department.updateInfo(listPosition);
 			return true;
 		}
 	}

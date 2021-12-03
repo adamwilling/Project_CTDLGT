@@ -22,6 +22,7 @@ void Position::inputInfo(vector<Position> listPosition) {
 
 	cout << "+ Enter position name: ";
 	getline(cin, positionName);
+	removeSpace(positionName);
 }
 
 void Position::importInfo(ifstream& input) {
@@ -32,13 +33,12 @@ void Position::importInfo(ifstream& input) {
 
 // Cài đặt phương thức nhập vào thông tin cho phòng ban
 void Position::updateInfo() {
-	cout << "+ Enter new name: ";
+	cout << "+ Enter new name (current: \"" + positionName + "\"): ";
 	getline(cin, positionName);
+	removeSpace(positionName);
 }
 
 // Cài đặt phương thức hiển thị thông tin phòng ban
 void Position::showInfo() {
-	cout << "---------------------------------------------------------------------" << endl;
-	cout << "- Position id: " << positionId << endl;
-	cout << "- Position name: " << positionName << endl;
+	cout << "\t\t\t||" << setw(15) << "\t" + positionId << "||" << setw(64) << "\t" + positionName << "||" << endl;
 }

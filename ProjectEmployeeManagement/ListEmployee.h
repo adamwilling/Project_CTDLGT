@@ -29,8 +29,11 @@ public:
 	// Khai báo phương thức hiển thị danh sách nhân viên
 	void showListEmployee(ListDepartment, ListPosition);
 
-	// Khai báo phương thức sửa thông tin nhân viên
+	// Khai báo phương thức cập nhật thông tin nhân viên
 	bool updateEmployee(string, ListDepartment, ListPosition);
+
+	// Khai báo phương thức cập nhật lương của nhân viên
+	bool updateSalary(string employeeId);
 
 	// Khai báo phương thức xóa nhân viên
 	bool deleteEmployee(string);

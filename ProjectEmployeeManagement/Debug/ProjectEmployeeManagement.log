@@ -1,5 +1,5 @@
-﻿  Employee.cpp
-  Note: including file: C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Employee.h
+﻿  ListEmployee.cpp
+  Note: including file: C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListEmployee.h
   Note: including file:  C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\library.h
   Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iostream
   Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\yvals_core.h
@@ -103,18 +103,23 @@
   Note: including file:              C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\ctype.h
   Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\clocale
   Note: including file:              C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\locale.h
-  Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iomanip
-  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xlocmon
-  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xloctime
   Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\string
   Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\vector
   Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\sstream
+  Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\iomanip
+  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xlocmon
+  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xloctime
   Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\fstream
-  Note: including file:  C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Date.h
-  Note: including file:  C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListDepartment.h
-  Note: including file:   C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Department.h
-  Note: including file:    C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\support.h
-  Note: including file:    C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListPosition.h
-  Note: including file:     C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Position.h
-C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Employee.cpp(84,20): warning C4018: '<': signed/unsigned mismatch
+  Note: including file:  C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Employee.h
+  Note: including file:   C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Date.h
+  Note: including file:   C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListDepartment.h
+  Note: including file:    C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Department.h
+  Note: including file:     C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\support.h
+  Note: including file:     C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListPosition.h
+  Note: including file:      C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\Position.h
+  Note: including file: C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\quickSort.h
+C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListEmployee.cpp(40,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListEmployee.cpp(104,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListEmployee.cpp(115,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\ProjectEmployeeManagement\ListEmployee.cpp(126,20): warning C4018: '<': signed/unsigned mismatch
   ProjectEmployeeManagement.vcxproj -> C:\Users\AdamWilling\Documents\HK1_2021-2022\CauTrucDuLieuVaGiaiThuat\ProjectEmployeeManagement\Debug\ProjectEmployeeManagement.exe

@@ -1,5 +1,4 @@
 ﻿#include "Department.h"
-using namespace std;
 
 
 // Cài đặt các phương thức get các thuộc tính private
@@ -14,7 +13,7 @@ vector<string> Department::getListPositionChild() {
 }
 
 // Cài đặt phương thức nhập vào thông tin cho phòng ban
-void Department::inputInfo(vector<Department> listDepartment) {
+void Department::inputInfo(vector<Department> listDepartment, ListPosition listPosition) {
 	cout << "+ Enter department id: ";
 	bool checkDepartmentIdExisted;
 	do {
@@ -28,11 +27,31 @@ void Department::inputInfo(vector<Department> listDepartment) {
 	cout << "+ Enter department name: ";
 	getline(cin, departmentName);
 
-	cout << "+ Enter list position's id managed by this department (seperate by space) (Ex: \"1 2 3 4 5\"): ";
+	cout << "---------------------------------------------------------------\n* List position: ";
+	for (int i = 0; i < listPosition.getListPosition().size(); ++i) {
+		if (i % 5 == 0) {
+			cout << endl;
+		}
+		else {
+			if (i) {
+				cout << " - ";
+			}
+		}
+		cout << listPosition.getListPosition()[i].getPositionId() << ". " << listPosition.getListPosition()[i].getPositionName();
+	}
+again:
+	cout << "\n+ Enter new list position's id managed by this department (seperate by space) (Ex: \"1 2 3 4 5\"): ";
 	string strListPosition;
 	getline(cin, strListPosition);
+	removeSpace(strListPosition);
 
 	listPositionChild = splitStringToVector(strListPosition, " ");
+	for (int i = 0; i < listPositionChild.size(); ++i) {
+		if (listPosition.searchPositionById(listPositionChild[i]).getPositionName() == "") {
+			cout << "*** Not found position has id \"" << listPositionChild[i] << "\"!";
+			goto again;
+		}
+	}
 }
 
 void Department::importInfo(ifstream& input) {
@@ -59,17 +78,36 @@ void Department::exportInfo(ofstream& output) {
 }
 
 // Cài đặt phương thức nhập vào thông tin cho phòng ban
-void Department::updateInfo() {
+void Department::updateInfo(ListPosition listPosition) {
 
-	cout << "+ Enter new department name: ";
+	cout << "+ Enter new department name (current: \"" + departmentName + "\"): ";
 	getline(cin, departmentName);
 
-	cout << "+ Enter new list position's id managed by this department (seperate by space) (Ex: \"1 2 3 4 5\"): ";
+	cout << "---------------------------------------------------------------\n* List position: ";
+	for (int i = 0; i < listPosition.getListPosition().size(); ++i) {
+		if (i % 5 == 0) {
+			cout << endl;
+		}
+		else {
+			if (i) {
+				cout << " - ";
+			}
+		}
+		cout << listPosition.getListPosition()[i].getPositionId() << ". " << listPosition.getListPosition()[i].getPositionName();
+	}
+again:
+	cout << "\n+ Enter new list position's id managed by this department (seperate by space) (Ex: \"1 2 3 4 5\") (current: \"" + joinVectorToString(listPositionChild) + "\"): ";
 	string strListPosition;
 	getline(cin, strListPosition);
-	strListPosition = standardizeString(strListPosition);
+	removeSpace(strListPosition);
 
 	listPositionChild = splitStringToVector(strListPosition, " ");
+	for (int i = 0; i < listPositionChild.size(); ++i) {
+		if (listPosition.searchPositionById(listPositionChild[i]).getPositionName() == "") {
+			cout << "*** Not found position has id \"" << listPositionChild[i] << "\"!";
+			goto again;
+		}
+	}
 }
 
 // Cài đặtphương thức hiển thị những chức vụ nằm bên trong phòng ban
@@ -77,8 +115,13 @@ void Department::showListPositionChild(ListPosition listPositionChild) {
 	int nPosition = this->listPositionChild.size();
 	for (int i = 0; i < nPosition; ++i) {
 		string positionName = listPositionChild.searchPositionById(this->listPositionChild[i]).getPositionName();
-		if (i) {
-			cout << " - ";
+		if (i % 5 == 0 && i != 0) {
+			cout << endl;
+		}
+		else {
+			if (i) {
+				cout << " - ";
+			}
 		}
 		cout << this->listPositionChild[i] << ". " << positionName;
 	}
@@ -95,8 +138,7 @@ void Department::showInfo(ListPosition listPositionChild) {
 
 // Cài đặt phương thức loại chức vụ khỏi phòng ban khi chức vụ đó bị xóa
 void Department::deletePositionChild(string positionId) {
-	int sizeList = listPositionChild.size();
-	for (int i = 0; i < sizeList; ++i) {
+	for (int i = 0; i < listPositionChild.size(); ++i) {
 		if (listPositionChild[i] == positionId) {
 			listPositionChild.erase(listPositionChild.begin() + i);
 		}

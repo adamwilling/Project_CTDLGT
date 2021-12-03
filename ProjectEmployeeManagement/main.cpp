@@ -7,7 +7,6 @@
 #include "Position.h"
 #include "support.h"
 #include "library.h"
-using namespace std;
 
 void employeeManagement();
 void filterManagement();
@@ -70,8 +69,8 @@ int main() {
 // Hàm chứa các chức năng quản lý nhân viên
 void employeeManagement() {
 	system("CLS");
-	int nChoice = 9;
-	string listChoice[]{ "is","ip","sh","ud","dl","ft","st","ep","ex" };
+	int nChoice = 10;
+	string listChoice[]{ "is","ip","sh","ud","us","dl","ft","st","ep","ex"};
 	string choice;
 	do {
 		cout << setfill('=') << setw(16) << "=" << "Employee Management" << setw(16) << "=" << setfill(' ') << endl;
@@ -79,6 +78,7 @@ void employeeManagement() {
 		cout << setw(50) << left << "--Press ip to import list employee from file--" << "|" << endl;
 		cout << setw(50) << left << "--Press sh to show list employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press ud to update info employee--" << "|" << endl;
+		cout << setw(50) << left << "--Press us to update salary of employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press de to delete employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press ft to filter employee--" << "|" << endl;
 		cout << setw(50) << left << "--Press st to sort employee--" << "|" << endl;
@@ -99,6 +99,7 @@ void employeeManagement() {
 		// Do string không dùng được switch case nên phải dùng if/else if/else
 		if (choice == "is") {
 			listEmployee.insertEmployee(listDepartment, listPosition);
+			cout << "* Insert employee successfully!" << endl;
 		}
 		else if (choice == "ip") {
 			string fileName;
@@ -129,7 +130,20 @@ void employeeManagement() {
 			} while (!isUpdated);
 			cout << "* Update info employee has id \"" << employeeId << "\" successfully!" << endl;
 		}
-		else if (choice == "de") {
+		else if (choice == "us") {
+			string employeeId;
+			cout << "- Enter employee id to update salary: ";
+			bool isUpdated;
+			do {
+				getline(cin, employeeId);
+				isUpdated = listEmployee.updateSalary(employeeId);
+				if (!isUpdated) {
+					cout << "* Not found employee has id \"" << employeeId << "\"! Re-enter: ";
+				}
+			} while (!isUpdated);
+			cout << "* Update salary of employee has id \"" << employeeId << "\" successfully!" << endl;
+		}
+		else if (choice == "dl") {
 			string employeeId;
 			cout << "- Enter employee id to delete: ";
 			bool isDeleted;
@@ -240,7 +254,7 @@ void sortManagement() {
 	string listChoice[]{ "si","sn","sd","sj","ss","ex" };
 	string choice;
 	do {
-		cout << setfill('=') << setw(17) << "=" << "Filter Management" << setw(17) << "=" << setfill(' ') << endl;
+		cout << setfill('=') << setw(18) << "=" << "Sort Management" << setw(18) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press si to sort by id--" << "|" << endl;
 		cout << setw(50) << left << "--Press sn to sort by name--" << "|" << endl;
 		cout << setw(50) << left << "--Press sd to sort by date of birth--" << "|" << endl;
@@ -325,7 +339,8 @@ void departmentManagement() {
 
 		// Do string không dùng được switch case nên phải dùng if/else if/else
 		if (choice == "is") {
-			listDepartment.insertDepartment();
+			listDepartment.insertDepartment(listPosition);
+			cout << "* Insert department successfully!" << endl;
 		}
 		else if (choice == "ip") {
 			string fileName;
@@ -349,7 +364,7 @@ void departmentManagement() {
 			bool isUpdated;
 			do {
 				getline(cin, departmentId);
-				isUpdated = listDepartment.updateDepartment(departmentId);
+				isUpdated = listDepartment.updateDepartment(departmentId, listPosition);
 				if (!isUpdated) {
 					cout << "*** Not found department has id \"" << departmentId << "\"! Re-enter: ";
 				}
@@ -385,7 +400,7 @@ void positionManagement() {
 	string listChoice[]{ "is","ip","sh","ud","dl","ep","ex" };
 	string choice;
 	do {
-		cout << endl << setfill('=') << setw(16) << "=" << "Position Management" << setw(16) << "=" << setfill(' ') << endl;
+		cout << setfill('=') << setw(16) << "=" << "Position Management" << setw(16) << "=" << setfill(' ') << endl;
 		cout << setw(50) << left << "--Press is to insert position--" << "|" << endl;
 		cout << setw(50) << left << "--Press ip to import list position from file--" << "|" << endl;
 		cout << setw(50) << left << "--Press sh to show list position--" << "|" << endl;
@@ -408,6 +423,7 @@ void positionManagement() {
 		// Do string không dùng được switch case nên phải dùng if/else if/else
 		if (choice == "is") {
 			listPosition.insertPosition();
+			cout << "* Insert position successfully!" << endl;
 		}
 		else if (choice == "ip") {
 			string fileName;

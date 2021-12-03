@@ -22,14 +22,14 @@ public:
 	string getPositionId();
 	string getPositionName();
 
-	// Khai báo phương thức nhập vào thông tin phòng ban
+	// Khai báo phương thức nhập vào thông tin chức vụ
 	void inputInfo(vector<Position>);
 	void importInfo(ifstream&);
 
-	// Khai báo phương thức cập nhật thông tin nhât viên
+	// Khai báo phương thức cập nhật thông tin chức vụ
 	void updateInfo();
 
-	// Khai báo phương thức hiển thị thông tin phòng ban
+	// Khai báo phương thức hiển thị thông tin chức vụ
 	void showInfo();
 };
 #endif

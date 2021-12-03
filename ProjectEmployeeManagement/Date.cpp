@@ -88,7 +88,6 @@ void Date::inputDateOfBirth() {
 	string strDate;
 	bool check = true;
 	do {
-		cout << "+ Enter date of birth (dd/mm/yyyy): ";
 		getline(cin, strDate);
 		check = toDate(strDate) && isValidDateOfBirth();
 	} while (!check);
@@ -99,7 +98,6 @@ void Date::inputDateOfJoinAtCompany(Date dateOfBirth) {
 	string strDate;
 	bool check = true;
 	do {
-		cout << "+ Enter date of joining the company (dd/mm/yyyy): ";
 		getline(cin, strDate);
 		check = toDate(strDate) && isValidDateOfJoinAtCompany(dateOfBirth);
 	} while (!check);

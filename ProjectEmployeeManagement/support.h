@@ -14,6 +14,8 @@ class Position;
 
 string standardizeString(string);
 
+void removeSpace(string&);
+
 void toLowerCase(string&);
 
 void determineGender(string&);

@@ -9,6 +9,7 @@
 #include "Department.h"
 #include "ListPosition.h"
 
+class ListPosition;
 class Department;
 
 class ListDepartment
@@ -20,7 +21,7 @@ public:
 	vector<Department> getListDepartment();
 
 	// Khai báo phương thức thêm phòng ban mới vào danh sách phòng ban
-	void insertDepartment();				// Nhập dữ liệu từ bàn phím
+	void insertDepartment(ListPosition);				// Nhập dữ liệu từ bàn phím
 	void insertDepartment(Department);		// Truyền vào phòng ban để thêm
 	bool importListDepartment(string);			// Nhập dữ liệu từ tập tin
 
@@ -31,7 +32,7 @@ public:
 	void showListDepartment(ListPosition);
 
 	// Khai báo phương thức sửa thông tin nhân viên
-	bool updateDepartment(string);
+	bool updateDepartment(string, ListPosition);
 
 	// Khai báo phương thức xóa nhân viên
 	bool deleteDepartment(string);
@@ -39,7 +40,7 @@ public:
 	// Khai báo phương thức tìm kiếm phòng ban bằng mã phòng ban
 	Department searchDepartmentById(string);
 
-	// Cài đặt phương thức loại một chức vụ khỏi phòng ban khi chức vụ đó bị xóa
+	// Khai báo phương thức loại một chức vụ khỏi phòng ban khi chức vụ đó bị xóa
 	void deletePositionInDepartment(string);
 };
 #endif
