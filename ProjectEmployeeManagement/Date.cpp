@@ -17,11 +17,11 @@ int Date::getYear() {
 bool Date::isValidDateOfBirth() {
 	int nDayInMonth = 0;
 	if (YEAR_NOW - year < 16 || YEAR_NOW - year > 65) {
-		cout << "*** Not of working age!" << endl;
+		cout << "*** Not of working age! Re-enter: ";
 		return false;
 	}
 	if (month < 1 || month > 12) {
-		cout << "*** Value of month must from 1 to 12!" << endl;
+		cout << "*** Value of month must from 1 to 12! Re-enter: ";
 		return false;
 	}
 	switch (month) {
@@ -42,7 +42,7 @@ bool Date::isValidDateOfBirth() {
 		nDayInMonth = 31;
 	}
 	if (day < 1 || day > nDayInMonth) {
-		cout << "*** With value of month is " << month << " and value of year is "<<year<<", value of day must from 1 to " << nDayInMonth << "!" << endl;
+		cout << "*** With value of month is " << month << " and value of year is "<<year<<", value of day must from 1 to " << nDayInMonth << "! Re-enter: ";
 		return false;
 	}
 	return true;
@@ -52,11 +52,11 @@ bool Date::isValidDateOfBirth() {
 bool Date::isValidDateOfJoinAtCompany(Date dateOfBirth) {
 	int nDayInMonth = 0;
 	if (year - dateOfBirth.year < 16 || year - dateOfBirth.year > 65) {
-		cout << "*** Not of working age!" << endl;
+		cout << "*** Not of working age! Re-enter: ";
 		return false;
 	}
 	if (month < 1 || month > 12) {
-		cout << "*** Value of month must from 1 to 12!" << endl;
+		cout << "*** Value of month must from 1 to 12! Re-enter: ";
 		return false;
 	}
 	switch (month) {
@@ -77,7 +77,7 @@ bool Date::isValidDateOfJoinAtCompany(Date dateOfBirth) {
 		nDayInMonth = 31;
 	}
 	if (day < 1 || day > nDayInMonth) {
-		cout << "*** With value of month is " << month << " and value of year is " << year << ", value of day must from 1 to " << nDayInMonth << "!" << endl;
+		cout << "*** With value of month is " << month << " and value of year is " << year << ", value of day must from 1 to " << nDayInMonth << "! Re-enter: ";
 		return false;
 	}
 	return true;
@@ -113,7 +113,7 @@ bool Date::toDate(string strDate) {
 		}
 	}
 	if (count != 2) {
-		cout << "*** Invalid date (dd/mm/yyyy). Ex: 29/11/2002!" << endl;
+		cout << "*** Invalid date (dd/mm/yyyy). Ex: 29/11/2002! Re-enter: ";
 		return false;
 	}
 

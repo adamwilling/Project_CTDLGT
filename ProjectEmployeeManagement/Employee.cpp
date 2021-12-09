@@ -61,8 +61,10 @@ void Employee::inputInfo(vector<Employee> listEmployee, ListDepartment listDepar
 	gender = standardizeString(gender);
 	determineGender(gender);
 
+	cout << "+ Enter date of birth (dd/mm/yyyy): ";
 	dateOfBirth.inputDateOfBirth();
 
+	cout << "+ Enter date of joining the company (dd/mm/yyyy): ";
 	dateOfJoinAtCompany.inputDateOfJoinAtCompany(dateOfBirth);
 
 	bool checkValidEmail;
